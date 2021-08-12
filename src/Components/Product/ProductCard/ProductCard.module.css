@@ -1,0 +1,45 @@
+.card {
+  position: relative;
+  width: 295px;
+  height: auto;
+  padding-bottom: 21px;
+  box-shadow: 0px 2px 4px 0px #0000001a;
+}
+.title {
+  padding: 0;
+  margin: 0;
+  padding-top: 20px;
+  padding-left: 19px;
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--bold-text-color);
+}
+
+.oldPrise {
+  color: var(--inactive-color);
+  text-decoration: line-through;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16, 5px;
+}
+
+.price {
+  padding: 0;
+  margin: 0;
+  padding-top: 4px;
+
+  padding-left: 19px;
+  color: var(--main-color);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16, 5px;
+}
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.image:hover {
+  cursor: pointer;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
