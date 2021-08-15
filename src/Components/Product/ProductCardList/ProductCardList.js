@@ -1,27 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './ProductCardList.module.css';
 import ProductCard from '../ProductCard';
 
 function ProductList({ items }) {
+  console.log(items);
   return (
-    <div>
+    <ul className={styles.list}>
       {items.map(item => (
         <ProductCard
           key={item.id}
-          imageSrc={item.imageSrc}
+          // imageSrc={item.imageSrc}
           oldPrice={item.oldPrice}
           price={item.price}
           title={item.title}
         />
       ))}
-    </div>
+    </ul>
   );
 }
 
 ProductList.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
+      id: PropTypes.number,
     }),
   ),
 };
