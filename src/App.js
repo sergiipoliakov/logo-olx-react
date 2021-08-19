@@ -1,7 +1,8 @@
 import './App.css';
+
 import Container from './Components/UI/Container/Container';
 import ProductCardList from './Components/Product/ProductCardList';
-import Header from './Components/Header';
+// import Header from './Components/Header';
 const cards = [
   {
     id: 1,
@@ -47,13 +48,11 @@ const cards = [
   },
 ];
 
-function App() {
+export default function App() {
   return (
     <Container>
-      <Header />
+      {/* <Header /> */}
       <ProductCardList items={cards} />
     </Container>
   );
 }
-
-export default App;
