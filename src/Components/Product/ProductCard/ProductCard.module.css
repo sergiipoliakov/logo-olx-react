@@ -33,7 +33,7 @@
   right: 20px;
   width: 14px;
   height: 14px;
-  z-index: 1;
+  /* z-index: 1; */
   transition: var(--animation-timing);
   fill: var(--white-color);
 }

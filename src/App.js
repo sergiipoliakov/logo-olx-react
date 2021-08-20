@@ -1,7 +1,10 @@
+import React, { Component } from 'react';
 import './App.css';
 
 import Container from './Components/UI/Container/Container';
 import ProductCardList from './Components/Product/ProductCardList';
+import Modal from './Components/Modal';
+
 // import Header from './Components/Header';
 const cards = [
   {
@@ -48,11 +51,35 @@ const cards = [
   },
 ];
 
-export default function App() {
-  return (
-    <Container>
-      {/* <Header /> */}
-      <ProductCardList items={cards} />
-    </Container>
-  );
+export default class App extends Component {
+  state = {
+    showModal: false,
+  };
+
+  toggleModal = () => {
+    this.setState(state => ({ showModal: !state.showModal }));
+  };
+
+  render() {
+    const { showModal } = this.state;
+    return (
+      <Container>
+        <button type="button" onClick={this.toggleModal}>
+          открыть модалку
+        </button>
+        {showModal && (
+          <Modal onModalClose={this.toggleModal}>
+            <h1>Привет Это контент модалки</h1>
+            <p>lorqweqweqw eqweqweqwe qweqweqwe lorem20</p>
+            <button type="button" onClick={this.toggleModal}>
+              Закрыть
+            </button>
+          </Modal>
+        )}
+
+        {/* <Header /> */}
+        <ProductCardList items={cards} />
+      </Container>
+    );
+  }
 }

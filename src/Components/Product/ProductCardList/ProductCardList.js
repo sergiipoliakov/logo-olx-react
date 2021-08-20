@@ -4,7 +4,6 @@ import styles from './ProductCardList.module.css';
 import ProductCard from '../ProductCard';
 
 function ProductList({ items }) {
-  console.log(items);
   return (
     <ul className={styles.list}>
       {items.map(item => (
