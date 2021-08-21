@@ -4,6 +4,7 @@ import './App.css';
 import Container from './Components/UI/Container/Container';
 import ProductCardList from './Components/Product/ProductCardList';
 import Modal from './Components/Modal';
+import Login from './Components/auth/login';
 
 // import Header from './Components/Header';
 const cards = [
@@ -53,7 +54,7 @@ const cards = [
 
 export default class App extends Component {
   state = {
-    showModal: false,
+    showModal: true,
   };
 
   toggleModal = () => {
@@ -69,11 +70,10 @@ export default class App extends Component {
         </button>
         {showModal && (
           <Modal onModalClose={this.toggleModal}>
-            <h1>Привет Это контент модалки</h1>
-            <p>lorqweqweqw eqweqweqwe qweqweqwe lorem20</p>
-            <button type="button" onClick={this.toggleModal}>
+            <Login onModalClose={this.toggleModal} />
+            {/* <button type="button" onClick={this.toggleModal}>
               Закрыть
-            </button>
+            </button> */}
           </Modal>
         )}
 

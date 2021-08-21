@@ -3,9 +3,10 @@
 :root {
   --main-color: #ff6b09;
   --bold-text-color: #000000;
-  --inactive-color: #bbbbbb;
+  --inactive-color: #f5f6fb;
   --white-color: #ffffff;
   --animation-timing: 0.2s ease-in;
+  --burder-color: #bbbbbb;
 }
 
 body {
