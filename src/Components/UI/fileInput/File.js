@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './Input.module.css';
+import styles from './File.module.css';
 
 const Input = props => {
   const { name, type, label, className, ...restProps } = props;
@@ -23,7 +23,7 @@ const Input = props => {
   );
 };
 Input.defaultProps = {
-  type: 'text',
+  type: 'file',
   name: null,
   label: '',
   className: '',

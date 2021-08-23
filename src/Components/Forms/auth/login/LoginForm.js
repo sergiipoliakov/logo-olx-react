@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import styles from './LoginForm.module.css';
-import AuthCard from '../auth-card/AuthCard';
-import Input from '../../UI/input';
-import IconButton from '../../UI/IconButton';
-import PrymaryButton from '../../UI/buttons';
-import Title from '../../UI/typography/title';
-import { ReactComponent as CloseIcon } from '../../../icons/close.svg';
-import { ReactComponent as GoogleIconLogo } from '../../../icons/googleIconLogo.svg';
+import AuthCard from '../../auth-card/AuthCard';
+import Input from '../../../UI/input';
+import IconButton from '../../../UI/IconButton';
+import PrymaryButton from '../../../UI/buttons';
+import Title from '../../../UI/typography/title';
+import { ReactComponent as CloseIcon } from '../../../../icons/close.svg';
+import { ReactComponent as GoogleIconLogo } from '../../../../icons/googleIconLogo.svg';
 
 export default class LoginForm extends Component {
   state = {

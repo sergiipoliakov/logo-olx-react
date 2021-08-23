@@ -1,0 +1,17 @@
+.closeBtn {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.addFormIput {
+  margin-bottom: 20px;
+}
+.buttonsContainer {
+  text-align: center;
+}
