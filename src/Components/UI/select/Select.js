@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import styles from './Select.module.css';
+import { nanoid } from 'nanoid';
 
 const Select = props => {
-  const { name, label, className, ...restProps } = props;
-  const id = Date.now();
+  const { name, label, className, value, ...restProps } = props;
+  const id = nanoid();
   const classList = [className, styles.selectWrapper].join(' ');
   return (
     <div className={classList}>
@@ -12,14 +13,16 @@ const Select = props => {
           {label}
         </label>
       )}
-      <select name={name} id={id} {...restProps} className={styles.select}>
-        <option value="property" selected>
-          Значение
-        </option>
+      <select
+        name={name}
+        id={id}
+        {...restProps}
+        className={styles.select}
+        defaultValue={value}
+      >
+        <option value="property">Значение</option>
         <option value="transport">Транспорт</option>
-        <option value="trade" selected>
-          Обмен
-        </option>
+        <option value="trade">Обмен</option>
         <option value="free">Бесплатно</option>
         <option value="reсreation and sport">воссоздание и Спорт</option>
         <option value="business and services">Бизнес и Сарвис 3</option>

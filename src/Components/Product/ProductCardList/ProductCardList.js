@@ -8,8 +8,8 @@ function ProductList({ items }) {
     <ul className={styles.list}>
       {items.map(item => (
         <ProductCard
-          key={item.id}
-          // imageSrc={item.imageSrc}
+          key={item._id}
+          imageSrc={item.imageUrls[0]}
           oldPrice={item.oldPrice}
           price={item.price}
           title={item.title}
