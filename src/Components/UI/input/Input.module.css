@@ -5,9 +5,9 @@
   width: 651px;
 }
 .input {
-  width: 380px;
+  width: 410px;
   font-size: 14px;
-  padding: 20px 25px;
+  padding: 20px 0px 20px 20px;
 }
 .label {
   font-weight: 500;

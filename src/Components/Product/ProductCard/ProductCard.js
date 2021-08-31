@@ -8,16 +8,19 @@ const defaultImg =
 const ProductCard = ({ imageSrc, oldPrice, price, title, id }) => {
   return (
     <li className={styles.card}>
-      <svg className={styles.svg} data-id={id}>
+      <svg className={styles.svgHeart} data-id={id}>
         <use href={sprite + '#icon-heart-orange'} data-id={id}></use>
       </svg>
       <div className={styles.wraper}>
         <img className={styles.image} src={imageSrc} alt={title} />
       </div>
+      <svg className={styles.svgFullscreen} data-id={id}>
+        <use href={sprite + '#icon-fullscreen-24px-1'} data-id={id}></use>
+      </svg>
       <div className={styles.content}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.price}>
-          <span className={styles.oldPrise}>{oldPrice} грн </span>
+          {oldPrice && <span className={styles.oldPrise}>{oldPrice} грн </span>}
           {price} грн
         </p>
       </div>
@@ -30,7 +33,7 @@ ProductCard.defaultProps = {
 
 ProductCard.propTypes = {
   imageSrc: PropTypes.string.isRequired,
-  oldPrice: PropTypes.number.isRequired,
+  oldPrice: PropTypes.number,
   price: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
 };

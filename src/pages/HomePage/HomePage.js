@@ -10,7 +10,9 @@ class HomePage extends Component {
   };
   async componentDidMount() {
     const { data } = await getCards();
-    this.setState(prevState => ({ cards: data.free }));
+    this.setState(prevState => ({
+      cards: data.sales,
+    }));
   }
   render() {
     console.log(this.state);
