@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './LoginForm.module.css';
+import { loginUser } from '../../../../services/auth/auth-login';
 import AuthCard from '../../auth-card/AuthCard';
 import Input from '../../../UI/input';
 import IconButton from '../../../UI/IconButton';
@@ -11,16 +12,21 @@ import { ReactComponent as GoogleIconLogo } from '../../../../icons/googleIconLo
 export default class LoginForm extends Component {
   state = {
     formData: {
-      login: '',
+      email: '',
       password: '',
     },
   };
 
-  handlSubmit = e => {
+  handlSubmit = async e => {
     e.preventDefault();
 
     console.log('submited');
     console.log(this.state.formData);
+    try {
+      await loginUser(this.state.formData);
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   handleInputChange = e => {
@@ -57,8 +63,8 @@ export default class LoginForm extends Component {
         <form onSubmit={this.handlSubmit}>
           <Input
             className={styles.authInput}
-            name="login"
-            placeholder="Login"
+            name="email"
+            placeholder="Email"
             onChange={this.handleInputChange}
           />
           <Input

@@ -2,9 +2,6 @@ import PropTypes from 'prop-types';
 import styles from './ProductCard.module.css';
 import sprite from '../../../images/sprite/symbol-defs.svg';
 
-const defaultImg =
-  'https://mcleansmartialarts.com/wp-content/uploads/2017/04/default-image-620x600.jpg';
-
 const ProductCard = ({ imageSrc, oldPrice, price, title, id }) => {
   return (
     <li className={styles.card}>
@@ -28,7 +25,8 @@ const ProductCard = ({ imageSrc, oldPrice, price, title, id }) => {
   );
 };
 ProductCard.defaultProps = {
-  imageSrc: defaultImg,
+  imageSrc:
+    'https://mcleansmartialarts.com/wp-content/uploads/2017/04/default-image-620x600.jpg',
 };
 
 ProductCard.propTypes = {

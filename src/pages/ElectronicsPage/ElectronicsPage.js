@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import ProductList from '../../Components/Product/ProductCardList';
-import { getCards } from '../../services/cardsService';
+import { getCategoryCards } from '../../services/cardsService';
 
-class HomePage extends Component {
+export default class ElectronicsPage extends Component {
   state = {
     cards: [],
   };
+
   async componentDidMount() {
-    const { data } = await getCards();
+    const catygoryQuerty = this.props.location.pathname;
+    const { data } = await getCategoryCards(catygoryQuerty);
     this.setState(prevState => ({
-      cards: data.sales,
+      cards: data,
     }));
   }
   render() {
@@ -17,5 +19,3 @@ class HomePage extends Component {
     return <ProductList items={cards} />;
   }
 }
-
-export default HomePage;
