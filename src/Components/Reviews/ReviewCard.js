@@ -9,11 +9,6 @@ import PrimaryButton from '../UI/buttons/PrimaryButton';
 import { ReactComponent as CloseIcon } from '../../icons/close.svg';
 import { ReactComponent as HardIcon } from '../../icons/Hard.svg';
 import { ReactComponent as Share } from '../../icons/share.svg';
-import defaultSmallImage from '../../images/defaultSmallImage.jpg';
-console.log(
-  '🚀 ~ file: ReviewCard.js ~ line 13 ~ defaultSmallImage',
-  defaultSmallImage,
-);
 
 const defaultImg =
   'https://mcleansmartialarts.com/wp-content/uploads/2017/04/default-image-620x600.jpg';

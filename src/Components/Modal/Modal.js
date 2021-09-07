@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 // import PropTypes from 'prop-types';
 import styles from './Modal.module.css';
+import withShowModal from '../hoc/withShowModal';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export default class Modal extends Component {
+class Modal extends Component {
   componentDidMount() {
     window.addEventListener(
       'keydown',
@@ -20,12 +21,12 @@ export default class Modal extends Component {
 
   handleKeyDown = e => {
     if (e.code === 'Escape') {
-      this.props.onModalClose();
+      this.props.value.onToggleModal();
     }
   };
   handleClickBackdrop = e => {
     if (e.target === e.currentTarget) {
-      this.props.onModalClose();
+      this.props.value.onToggleModal();
     }
   };
 
@@ -38,3 +39,5 @@ export default class Modal extends Component {
     );
   }
 }
+
+export default withShowModal(Modal);

@@ -1,1 +1,26 @@
+.list {
+  height: 70px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--burder-color);
+  border-bottom: 1px solid var(--burder-color);
 
+  /* justify-content: center; */
+}
+.list > li {
+  margin: 20px;
+}
+.link {
+  text-decoration: none;
+  color: var(--bold-text-color);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+}
+.active {
+  color: var(--main-color);
+  text-decoration: underline;
+}

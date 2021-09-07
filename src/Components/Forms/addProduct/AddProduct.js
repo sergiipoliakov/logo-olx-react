@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import styles from './AddProduct.module.css';
-
-// import PropTypes from 'prop-types';
 import AuthCard from '../../Forms/auth-card/AuthCard';
 import Title from '../../UI/typography/title';
 import Input from '../../UI/input';

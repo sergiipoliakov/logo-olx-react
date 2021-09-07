@@ -1,30 +1,86 @@
 import React from 'react';
+import styles from './AppBar.module.css';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
-
-// const catigories = {
-//   property: 'Нерухомість',
-//   transport: 'Транспорт',
-//   work: 'Робота',
-//   electronics: 'Електроніка',
-//   businessAndServices: 'Бізнес та послуги',
-//   recreationAndSport: 'Відпочинок і спорт',
-//   free: 'Віддам безкоштовно',
-//   trade: 'Обмін',
-// };
+// import PropTypes from 'prop-types';
 
 function AppBar(props) {
   return (
     <div>
-      <ul>
-        <NavLink to="/property">Нерухомість</NavLink>
-        <NavLink to="/transport">Транспорт</NavLink>
-        <NavLink to="/work">Робота</NavLink>
-        <NavLink to="/electronics">Електроніка</NavLink>
-        <NavLink to="/businessAndServices">Бізнес та послуги</NavLink>
-        <NavLink to="/recreationAndSport">Відпочинок і спорт</NavLink>
-        <NavLink to="/free">Віддам безкоштовно</NavLink>
-        <NavLink to="/trade">Обмін</NavLink>
+      <ul className={styles.list}>
+        <li>
+          <NavLink
+            to="/property"
+            className={styles.link}
+            activeClassName={styles.active}
+          >
+            Нерухомість
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/transport"
+            className={styles.link}
+            activeClassName={styles.active}
+          >
+            Транспорт
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink
+            to="/work"
+            className={styles.link}
+            activeClassName={styles.active}
+          >
+            Робота
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink
+            to="/electronics"
+            className={styles.link}
+            activeClassName={styles.active}
+          >
+            Електроніка
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/businessAndServices"
+            className={styles.link}
+            activeClassName={styles.active}
+          >
+            Бізнес та послуги
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/recreationAndSport"
+            className={styles.link}
+            activeClassName={styles.active}
+          >
+            Відпочинок і спорт
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/free"
+            className={styles.link}
+            activeClassName={styles.active}
+          >
+            Віддам безкоштовно
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/trade"
+            className={styles.link}
+            activeClassName={styles.active}
+          >
+            Обмін
+          </NavLink>
+        </li>
       </ul>
     </div>
   );

@@ -6,9 +6,6 @@ import ProductCard from '../ProductCard';
 
 function ProductList({ items }) {
   const [unSet, setUnSet] = useState(12);
-  const [activeBtn, setActiveBtn] = useState('');
-
-  // const classList = [styles.button, activeBtn].join(' ');
 
   const makePagineate = function (array) {
     return array.slice(0, unSet);
@@ -30,15 +27,17 @@ function ProductList({ items }) {
         ))}
       </ul>
       <div>
-        <PrimaryButton
-          className={styles.button}
-          type="button"
-          onClick={() => {
-            setUnSet(unSet + 12);
-          }}
-        >
-          Загрузить ещё
-        </PrimaryButton>
+        {items.length > 12 && paginatedCards.length !== items.length && (
+          <PrimaryButton
+            className={styles.button}
+            type="button"
+            onClick={() => {
+              setUnSet(unSet + 12);
+            }}
+          >
+            Загрузить ещё
+          </PrimaryButton>
+        )}
       </div>
     </div>
   );

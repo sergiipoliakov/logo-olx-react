@@ -12,16 +12,16 @@ import { ReactComponent as GoogleIconLogo } from '../../../../icons/googleIconLo
 export default class LoginForm extends Component {
   state = {
     formData: {
-      email: '',
-      password: '',
+      email: 'user@example.com',
+      password: 'qwerty123',
     },
   };
 
   handlSubmit = async e => {
     e.preventDefault();
 
-    console.log('submited');
-    console.log(this.state.formData);
+    // console.log('submited');
+    // console.log(this.state.formData);
     try {
       await loginUser(this.state.formData);
     } catch (error) {
