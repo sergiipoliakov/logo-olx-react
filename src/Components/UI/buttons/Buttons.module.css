@@ -1,0 +1,21 @@
+.button {
+  height: 60px;
+  width: 210px;
+  padding: 20px 20px;
+  background-color: var(--main-color);
+  border: var(--main-color);
+
+  font-size: 14px;
+  line-height: 14px;
+  color: var(--white-color);
+
+  cursor: pointer;
+  transition: var(--animation-timing);
+}
+
+.button:hover {
+  background-color: var(--white-color);
+  color: var(--bold-text-color);
+  border: 1px solid var(--burder-color);
+  transition: var(--animation-timing);
+}

@@ -1,15 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import AppBar from './AppBar';
+import AuthNav from './authNav/AuthNav';
 
 function Header(props) {
   return (
     <div>
-      <h1>logo</h1>
-      <a href="#">Реєстрація /</a> <a href="#"> Увійти</a>
+      <AuthNav />
+      <AppBar />
     </div>
   );
 }
 
-Header.propTypes = {};
+// Header.propTypes = {};
 
 export default Header;

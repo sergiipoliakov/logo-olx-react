@@ -1,0 +1,16 @@
+.selectWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 651px;
+}
+.select {
+  width: 434px;
+  font-size: 14px;
+  padding: 20px 25px;
+}
+.label {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+}

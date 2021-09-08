@@ -1,0 +1,15 @@
+/* .loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 650px;
+  height: 583px;
+  background-color: var(--inactive-color);
+  padding: 67px 103px;
+} */
+
+.card {
+  background: var(--inactive-color);
+  /* padding: 30px 30px 25px; */
+  padding: 67px 103px;
+}
