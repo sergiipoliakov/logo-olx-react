@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import AppBar from './AppBar';
 import AuthNav from './authNav/AuthNav';
 

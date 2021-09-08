@@ -22,14 +22,12 @@ const AuthNav = ({ value }) => {
       </div>
       <ul className={styles.authList}>
         <li>
-          <Link to="/registr" className={styles.link}>
-            Реєстрація /
-          </Link>
+          <button className={styles.authLink}>Реєстрація /</button>
         </li>
         <li>
-          <Link to="#" className={styles.link} onClick={onLoginClick}>
+          <button className={styles.authLink} onClick={onLoginClick}>
             Увійти
-          </Link>
+          </button>
         </li>
         <li>
           <PrimaryButton className={styles.button} onClick={onAddProductClick}>

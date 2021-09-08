@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './AppBar.module.css';
 import { NavLink } from 'react-router-dom';
-// import PropTypes from 'prop-types';
 
 function AppBar(props) {
   return (
