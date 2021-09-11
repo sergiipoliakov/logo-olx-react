@@ -14,7 +14,12 @@ class HomePage extends Component {
   }
   render() {
     const { cards } = this.state;
-    return <ProductList items={cards} />;
+    return (
+      <>
+        <ProductList items={cards} />
+        <ProductList items={cards} />
+      </>
+    );
   }
 }
 
