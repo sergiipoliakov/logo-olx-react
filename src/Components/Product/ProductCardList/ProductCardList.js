@@ -4,7 +4,7 @@ import styles from './ProductCardList.module.css';
 import PrimaryButton from '../../UI/buttons/PrimaryButton';
 import ProductCard from '../ProductCard';
 
-function ProductList({ items }) {
+function ProductList({ items, isUserCardsPage, isFavouritesCardsPage }) {
   const [unSet, setUnSet] = useState(12);
 
   const makePagineate = function (array) {
@@ -19,10 +19,13 @@ function ProductList({ items }) {
         {paginatedCards.map(item => (
           <ProductCard
             key={item._id}
+            id={item._id}
             imageSrc={item.imageUrls[0]}
             oldPrice={item.oldPrice}
             price={item.price}
             title={item.title}
+            isUserCardsPage={isUserCardsPage}
+            isFavouritesCardsPage={isFavouritesCardsPage}
           />
         ))}
       </ul>

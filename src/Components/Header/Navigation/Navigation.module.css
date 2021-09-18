@@ -1,0 +1,46 @@
+.authNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+.search {
+  margin-left: 24px;
+}
+.search:hover {
+  border-bottom: 2px solid var(--main-color);
+}
+.logo {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--bold-text-color);
+  font-family: var(--montserrat);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+}
+.logo:hover {
+  color: var(--main-color);
+}
+
+.userMenu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.button {
+  margin-left: 20px;
+  min-width: 230px;
+  height: 70px;
+  text-transform: uppercase;
+}
+.button:hover {
+  min-width: 230px;
+  text-transform: uppercase;
+}

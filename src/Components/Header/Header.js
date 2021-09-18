@@ -1,11 +1,11 @@
 import React from 'react';
 import AppBar from './AppBar';
-import AuthNav from './authNav/AuthNav';
+import Navigation from './Navigation';
 
 function Header(props) {
   return (
     <div>
-      <AuthNav />
+      <Navigation />
       <AppBar />
     </div>
   );

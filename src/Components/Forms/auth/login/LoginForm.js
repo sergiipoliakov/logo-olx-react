@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './LoginForm.module.css';
 import { loginUser } from '../../../../services/auth/auth-login';
+import { connect } from 'react-redux';
 import AuthCard from '../../auth-card/AuthCard';
 import Input from '../../../UI/input';
 import IconButton from '../../../UI/IconButton';
@@ -8,25 +9,28 @@ import PrymaryButton from '../../../UI/buttons';
 import Title from '../../../UI/typography/title';
 import { ReactComponent as CloseIcon } from '../../../../icons/close.svg';
 import { ReactComponent as GoogleIconLogo } from '../../../../icons/googleIconLogo.svg';
+import { authOperations } from '../../../../redux/auth/index';
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
   state = {
     formData: {
-      email: 'user@example.com',
-      password: 'qwerty123',
+      email: '',
+      password: '',
     },
   };
 
   handlSubmit = async e => {
     e.preventDefault();
 
+    this.props.onLogin(this.state.formData);
+
     // console.log('submited');
     // console.log(this.state.formData);
-    try {
-      await loginUser(this.state.formData);
-    } catch (error) {
-      console.error(error.message);
-    }
+    // try {
+    //   await loginUser(this.state.formData);
+    // } catch (error) {
+    //   console.error(error.message);
+    // }
   };
 
   handleInputChange = e => {
@@ -82,3 +86,9 @@ export default class LoginForm extends Component {
     );
   }
 }
+
+const mapDispatchToProps = {
+  onLogin: authOperations.logIn,
+};
+
+export default connect(null, mapDispatchToProps)(LoginForm);

@@ -1,55 +1,50 @@
-import { createStore } from 'redux';
-const reducer = (state = {}, action) => state;
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
-const store = createStore(reducer);
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 
-export default store;
+import storage from 'redux-persist/lib/storage';
+import cardsReducer from './userCards/cards-reducer';
+import { authReducer } from './auth';
 
-//
+const middleware = [
+  ...getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+];
 
-// import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-// import {
-//   persistStore,
-//   persistReducer,
-//   FLUSH,
-//   REHYDRATE,
-//   PAUSE,
-//   PERSIST,
-//   PURGE,
-//   REGISTER,
-// } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
 
-// import { postersReducer } from './poster';
+const cardsPersistConfig = {
+  key: 'cards',
+  storage,
 
-// const myMiddleware = store => next => action => {
-//   next(action);
-// };
+  blacklist: ['loading', 'error'],
+};
 
-// const middleware = [
-//   ...getDefaultMiddleware({
-//     serializableCheck: {
-//       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//     },
-//   }),
-//   myMiddleware,
-// ];
+const store = configureStore({
+  reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
+    cards: persistReducer(cardsPersistConfig, cardsReducer),
+  },
+  middleware,
+  devTools: true,
+});
 
-// const posterPersistConfig = {
-//   key: 'posters',
-//   storage,
+const persistor = persistStore(store);
 
-//   // blacklist: ['user', 'error'],
-// };
-// const store = configureStore({
-//   reducer: {
-//     poster: persistReducer(posterPersistConfig, postersReducer),
-//   },
-//   middleware,
-//   devTools: process.env.NODE_ENV === 'development',
-// });
-
-// const persistor = persistStore(store);
-
-// /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
-// export default { store, persistor };
+export default { store, persistor };

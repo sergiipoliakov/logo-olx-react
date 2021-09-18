@@ -1,22 +1,58 @@
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import styles from './ProductCard.module.css';
 import IconButton from '../../UI/IconButton';
 import { ReactComponent as HardIcon } from '../../../icons/Hard.svg';
+import { ReactComponent as EditIcon } from '../../../icons/editIcon.svg';
 import { ReactComponent as FullScreenIcon } from '../../../icons/fullscreen.svg';
+import { cardsOperations } from '../../../redux/userCards';
 
-const ProductCard = ({ imageSrc, oldPrice, price, title, id }) => {
+const ProductCard = ({
+  imageSrc,
+  oldPrice,
+  price,
+  title,
+  id,
+  isUserCardsPage,
+  isFavouritesCardsPage,
+  onFavouritClick,
+  onFavouritDelete,
+  onDeleteCard,
+}) => {
   return (
     <li className={styles.card}>
       <div className={styles.wraper}>
         <img className={styles.image} src={imageSrc} alt={title} />
         <div className={styles.layaut}>
-          <IconButton
-            className={styles.hardIcon}
-            data-id={id}
-            aria-label="hardIcon"
-          >
-            <HardIcon data-id={id} />
-          </IconButton>
+          {isFavouritesCardsPage ? (
+            <IconButton
+              className={styles.hardIcon}
+              data-id={id}
+              aria-label="hardIcon"
+              onClick={() => onFavouritDelete(id)}
+            >
+              <HardIcon data-id={id} className={styles.activeFavourit} />
+            </IconButton>
+          ) : (
+            <IconButton
+              className={styles.hardIcon}
+              data-id={id}
+              aria-label="hardIcon"
+              onClick={() => onFavouritClick(id)}
+            >
+              <HardIcon data-id={id} />
+            </IconButton>
+          )}
+          {isUserCardsPage && (
+            <IconButton
+              className={styles.editIcon}
+              data-id={id}
+              aria-label="editIcon"
+              onClick={() => onDeleteCard(id)}
+            >
+              <EditIcon data-id={id} />
+            </IconButton>
+          )}
           <IconButton
             className={styles.fullScreenIcon}
             data-id={id}
@@ -48,4 +84,13 @@ ProductCard.propTypes = {
   price: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
 };
-export default ProductCard;
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+  onFavouritClick: cardsOperations.addCardToFavourit,
+  onFavouritDelete: cardsOperations.deleteFavourit,
+  onDeleteCard: cardsOperations.deleteCard,
+};
+
+export default connect(null, mapDispatchToProps)(ProductCard);
