@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { cardsOperations } from '../../../redux/userCards';
 import styles from './AddProduct.module.css';
 import AuthCard from '../../Forms/auth-card/AuthCard';
 import Title from '../../UI/typography/title';
@@ -8,8 +10,9 @@ import PrymaryButton from '../../UI/buttons';
 
 import IconButton from '../../UI/IconButton';
 import { ReactComponent as CloseIcon } from '../../../icons/close.svg';
+import { authOperations } from '../../../redux/auth';
 
-export default class AddProduct extends Component {
+class AddProduct extends Component {
   state = {
     formData: {
       title: '',
@@ -23,9 +26,20 @@ export default class AddProduct extends Component {
 
   handlSubmit = e => {
     e.preventDefault();
+    const { file, title, description, category, price, phone } =
+      this.state.formData;
 
-    console.log('submited');
-    console.log(this.state.formData);
+    const data = new FormData();
+    data.append('title', title);
+    data.append('description', description);
+    data.append('category', category);
+    data.append('price', price);
+    data.append('phone', phone);
+    data.append('file', file);
+
+    this.props.onSubmit(data);
+    // this.props.getCurrentUser();
+    // this.props.onModalClose();s
   };
 
   handleInputChange = e => {
@@ -34,7 +48,7 @@ export default class AddProduct extends Component {
     this.setState(prevState => ({
       formData: {
         ...prevState.formData,
-        [name]: value,
+        [name]: e.target.type === 'file' ? e.target.files[0] : value,
       },
     }));
   };
@@ -105,3 +119,10 @@ export default class AddProduct extends Component {
     );
   }
 }
+
+const mapDispatchToProps = {
+  onSubmit: cardsOperations.addCard,
+  getCurrentUser: authOperations.getCurrentUser,
+};
+
+export default connect(null, mapDispatchToProps)(AddProduct);

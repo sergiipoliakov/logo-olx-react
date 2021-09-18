@@ -1,4 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+
 import {
   persistStore,
   persistReducer,
@@ -9,13 +10,10 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+
 import storage from 'redux-persist/lib/storage';
-
-import { postersReducer } from './poster';
-
-const myMiddleware = store => next => action => {
-  next(action);
-};
+import cardsReducer from './userCards/cards-reducer';
+import { authReducer } from './auth';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -23,24 +21,30 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  myMiddleware,
 ];
 
-const posterPersistConfig = {
-  key: 'posters',
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
+
+const cardsPersistConfig = {
+  key: 'cards',
   storage,
 
-  // blacklist: ['user', 'error'],
+  blacklist: ['loading', 'error'],
 };
+
 const store = configureStore({
   reducer: {
-    poster: persistReducer(posterPersistConfig, postersReducer),
+    auth: persistReducer(authPersistConfig, authReducer),
+    cards: persistReducer(cardsPersistConfig, cardsReducer),
   },
   middleware,
-  devTools: process.env.NODE_ENV === 'development',
+  devTools: true,
 });
 
 const persistor = persistStore(store);
 
-/* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default { store, persistor };

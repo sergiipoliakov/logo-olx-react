@@ -34,15 +34,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  /* z-index: 1; */
   background-color: transparent;
   border: none;
   transition: var(--animation-timing);
   fill: var(--white-color);
 }
+.editIcon {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* z-index: 1; */
+  background-color: transparent;
+  border: none;
+  transition: var(--animation-timing);
+  fill: var(--white-color);
+}
+.editIcon:hover {
+  cursor: pointer;
+  fill: var(--main-color);
+}
 
 .hardIcon:hover {
   cursor: pointer;
+  fill: var(--main-color);
+}
+
+.activeFavourit > path {
   fill: var(--main-color);
 }
 

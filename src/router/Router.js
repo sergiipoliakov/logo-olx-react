@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Container from '../Components/UI/Container/Container';
+import PrivateRoute from '../Components/PrivateRoute';
 
 import HomePage from '../pages/HomePage';
 import PropertyPage from '../pages/PropertyPage';
@@ -11,6 +12,8 @@ import BusinessAndServicesPage from '../pages/BusinessAndServicesPage';
 import RecreationAndSportPage from '../pages/RecreationAndSportPage';
 import FreePage from '../pages/FreePage';
 import TradePage from '../pages/TradePage';
+import UserCards from '../pages/UserCards';
+import UserFavouritesCardsPage from '../pages/Favourites';
 
 const paths = {
   MAIN: '/',
@@ -22,6 +25,8 @@ const paths = {
   SPORT: '/recreationAndSport',
   FREE: '/free',
   TRADE: '/trade',
+  OWN: '/userCards',
+  FAVOURITES: '/favourites',
 };
 
 export default function Router() {
@@ -38,6 +43,11 @@ export default function Router() {
           <Route path={paths.SPORT} component={RecreationAndSportPage} />
           <Route path={paths.FREE} component={FreePage} />
           <Route path={paths.TRADE} component={TradePage} />
+          <PrivateRoute path={paths.OWN} component={UserCards} />
+          <PrivateRoute
+            path={paths.FAVOURITES}
+            component={UserFavouritesCardsPage}
+          />
         </Switch>
       </Container>
     </main>
