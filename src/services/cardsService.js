@@ -1,8 +1,8 @@
 import axios from 'axios';
 axios.defaults.baseURL = 'https://callboard-backend.herokuapp.com';
 
-export const getCards = () => {
-  return axios.get('/call?page=1');
+export const getCards = (pageNum = 1) => {
+  return axios.get(`/call?page=${pageNum}`);
 };
 
 export const getCategoryCards = categoryQuery => {

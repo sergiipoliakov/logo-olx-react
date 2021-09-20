@@ -2,7 +2,7 @@ import withShowModal from '../../hoc/withShowModal';
 import styles from './AuthNav.module.css';
 
 function AuthNav({ value }) {
-  const { onLoginClick, onAddProductClick } = value;
+  const { onLoginClick } = value;
 
   return (
     <div>

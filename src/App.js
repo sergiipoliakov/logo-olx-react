@@ -5,6 +5,7 @@ import './App.css';
 import RoutePages from './router/Router';
 import ModalPage from './Components/Modal';
 import Header from './Components/Header';
+import Futter from './Components/Futter';
 import ShowModalContext from './context/ShowModal/ShowModal';
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
           <Header />
           <RoutePages />
           <ModalPage />
+          <Futter />
         </ShowModalContext>
       </>
     );

@@ -20,7 +20,7 @@ const Navigation = ({ value, isAuthenticated }) => {
         </Link>
       </div>
       <div>
-        <Link to="/" className={styles.logo}>
+        <Link to="/page=1" className={styles.logo}>
           LOGO
         </Link>
       </div>

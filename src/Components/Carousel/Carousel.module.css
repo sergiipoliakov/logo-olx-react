@@ -1,0 +1,56 @@
+.box {
+  position: relative;
+  margin-bottom: 50px;
+  border-top: 1px solid var(--burder-color);
+}
+
+.boxPagination {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.caruselItem {
+  list-style: none;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+
+  widows: 24px;
+  height: 24px;
+  border-radius: 50%;
+  fill: var(--bold-text-color);
+  background-color: var(--white-color);
+}
+.button:hover {
+  background-color: var(--main-color);
+  cursor: pointer;
+}
+
+.paginationIcon {
+  fill: var(--bold-text-color);
+}
+
+.button:hover .paginationIcon {
+  fill: var(--white-color);
+}
+.title {
+  margin-left: 50px;
+  margin-right: 20px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+.link {
+  color: var(--main-color);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.6px;
+  letter-spacing: 1px;
+}

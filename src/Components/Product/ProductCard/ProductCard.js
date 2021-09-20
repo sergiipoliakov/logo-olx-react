@@ -85,7 +85,7 @@ ProductCard.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = state => ({});
+// const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
   onFavouritClick: cardsOperations.addCardToFavourit,
