@@ -1,4 +1,8 @@
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { cardsOperations } from '../../redux/userCards';
+
 import { useState } from 'react';
 import styles from './ReviewCard.module.css';
 import Title from '../UI/typography/title/Title';
@@ -10,36 +14,37 @@ import { ReactComponent as CloseIcon } from '../../icons/close.svg';
 import { ReactComponent as HardIcon } from '../../icons/Hard.svg';
 import { ReactComponent as Share } from '../../icons/share.svg';
 
-const defaultImg =
-  'https://mcleansmartialarts.com/wp-content/uploads/2017/04/default-image-620x600.jpg';
-
 function ReviewCard({
   onModalClose,
-  price,
-  productCode,
-  name,
-  phone,
-  dataFrom,
-  description,
-  imageSrc,
-  title,
+  onFavouritClick,
+  card: {
+    _id,
+    price = 0,
+    productCode = '105-С',
+    name = 'Олга',
+    phone = '+30999090909',
+    dataFrom = 'на OLX с нояб. 2018',
+    description = 'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона',
+    imageUrls = [
+      'https://mcleansmartialarts.com/wp-content/uploads/2017/04/default-image-620x600.jpg',
+    ],
+    title = 'Футболка спортивна',
+  },
 }) {
   const [showInfo, setShowInfo] = useState(false);
-  console.log(showInfo);
+
   return (
     <AuthCard>
       <div className={styles.content}>
-        <div>
-          <div>
-            <img className={styles.mainImage} src={imageSrc} alt={title} />
-            <div className={styles.smallImageContainer}>
-              <div className={styles.smallImage}></div>
-              <div className={styles.smallImage}></div>
-              <div className={styles.smallImage}></div>
-              <div className={styles.smallImage}></div>
-              <div className={styles.smallImage}></div>
-            </div>
-          </div>
+        <div className={styles.imgContainer}>
+          <img className={styles.mainImage} src={imageUrls[0]} alt={title} />
+          <ul className={styles.smallImageContainer}>
+            {imageUrls.map(img => (
+              <li key={img} className={styles.smallImage}>
+                <img src={img} alt={title} />
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div>
@@ -81,10 +86,13 @@ function ReviewCard({
           </div>
 
           <div className={styles.funtion}>
-            <SubTitle className={styles.hardIcon}>
+            <SubTitle
+              className={styles.hardIconBtn}
+              onClick={() => onFavouritClick(_id)}
+            >
               В обране <HardIcon />
             </SubTitle>
-            <SubTitle className={styles.hardIcon}>
+            <SubTitle className={styles.hardIconBtn}>
               Поділитися <Share />
             </SubTitle>
           </div>
@@ -96,27 +104,23 @@ function ReviewCard({
   );
 }
 
-ReviewCard.defaultProps = {
-  price: 0,
-  productCode: '105-С',
-  name: 'Олга',
-  phone: '099090909',
-  dataFrom: 'на OLX с нояб. 2018',
-  title: 'Футболка спортивна',
-  imageSrc: defaultImg,
-  description:
-    'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона',
-};
-
 ReviewCard.propTypes = {
-  price: PropTypes.number,
-  productCode: PropTypes.string,
-  name: PropTypes.string,
-  phone: PropTypes.string,
-  dataFrom: PropTypes.string,
-  description: PropTypes.string,
-  title: PropTypes.string,
-  imageSrc: PropTypes.string,
+  card: PropTypes.shape({
+    price: PropTypes.number.isRequired,
+    productCode: PropTypes.string,
+    name: PropTypes.string,
+    phone: PropTypes.string.isRequired,
+    dataFrom: PropTypes.string,
+    description: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    imageUrls: PropTypes.array.isRequired,
+  }),
 };
 
-export default ReviewCard;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+  onFavouritClick: cardsOperations.addCardToFavourit,
+};
+
+export default connect(null, mapDispatchToProps)(ReviewCard);

@@ -9,6 +9,9 @@ import {
   addCardRequest,
   addCardSuccess,
   addCardError,
+  editCardRequest,
+  editCardSuccess,
+  editCardError,
   deleteCardRequest,
   deleteCardSuccess,
   deleteCardError,
@@ -18,6 +21,9 @@ import {
   deleteFavouritRequest,
   deleteFavouritSuccess,
   deleteFavouritError,
+  setCardIdRequest,
+  setCardIdSuccess,
+  setCardIdError,
 } from './cards-actions';
 
 axios.defaults.baseURL = 'https://callboard-backend.herokuapp.com';
@@ -48,6 +54,20 @@ const addCard = formdata => dispatch => {
     .then(({ data }) => dispatch(addCardSuccess(data)))
     .catch(error => dispatch(addCardError(error.message)));
 };
+
+const editCard = (cardId, card) => async dispatch => {
+  dispatch(editCardRequest());
+
+  try {
+    const { data } = await axios.patch(`/api/card/${cardId}`, {
+      ...card,
+    });
+    dispatch(editCardSuccess(data.data.card));
+  } catch (error) {
+    dispatch(editCardError(error));
+  }
+};
+
 const deleteCard = id => dispatch => {
   dispatch(deleteCardRequest());
 
@@ -75,11 +95,23 @@ const deleteFavourit = id => dispatch => {
     .catch(error => dispatch(deleteFavouritError(error.message)));
 };
 
+const cardId = id => dispatch => {
+  dispatch(setCardIdRequest());
+
+  try {
+    dispatch(setCardIdSuccess(id));
+  } catch (error) {
+    dispatch(setCardIdError(error));
+  }
+};
+
 export default {
   fetchUserCards,
   addCard,
+  editCard,
   deleteCard,
   addCardToFavourit,
   fetchUserFavouritCards,
   deleteFavourit,
+  cardId,
 };

@@ -8,6 +8,7 @@ import PrimaryButton from '../../UI/buttons/PrimaryButton';
 import { ReactComponent as SearchIcon } from '../../../icons/search.svg';
 import withShowModal from '../../hoc/withShowModal';
 import { authSelectors } from '../../../redux/auth';
+import { paths } from '../../../router/Router';
 
 const Navigation = ({ value, isAuthenticated }) => {
   const { onAddProductClick } = value;
@@ -20,7 +21,7 @@ const Navigation = ({ value, isAuthenticated }) => {
         </Link>
       </div>
       <div>
-        <Link to="/page=1" className={styles.logo}>
+        <Link to={paths.MAIN} className={styles.logo}>
           LOGO
         </Link>
       </div>

@@ -60,6 +60,7 @@ function MyCarousel({ items, title, to }) {
             oldPrice={item.oldPrice}
             price={item.price}
             title={item.title}
+            id={item._id}
           />
         ))}
       </Carousel>

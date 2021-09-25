@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { cardsOperations } from '../../../redux/userCards';
-import styles from './AddProduct.module.css';
+import styles from './editProductCard.module.css';
 import AuthCard from '../../Forms/auth-card/AuthCard';
 import Title from '../../UI/typography/title';
 import Input from '../../UI/input';
@@ -10,18 +10,32 @@ import PrymaryButton from '../../UI/buttons';
 
 import IconButton from '../../UI/IconButton';
 import { ReactComponent as CloseIcon } from '../../../icons/close.svg';
+import { ReactComponent as DeleteIcon } from '../../../icons/delete.svg';
+
 import { authOperations } from '../../../redux/auth';
 
-class AddProduct extends Component {
+class editProductCard extends Component {
   state = {
     formData: {
       title: '',
       description: '',
       category: '',
-      price: '0',
+      price: '',
       phone: '',
       file: null,
     },
+  };
+  componentDidMount() {
+    this.setState(prevState => ({
+      formData: {
+        ...prevState.formData,
+        ...this.props.card,
+      },
+    }));
+  }
+  deleteCard = id => {
+    this.props.onDeleteCard(id);
+    this.props.onModalClose();
   };
 
   handlSubmit = e => {
@@ -39,7 +53,7 @@ class AddProduct extends Component {
 
     this.props.onSubmit(data);
     // this.props.getCurrentUser();
-    // this.props.onModalClose();
+    this.props.onModalClose();
   };
 
   handleInputChange = e => {
@@ -54,6 +68,15 @@ class AddProduct extends Component {
   };
 
   render() {
+    const {
+      title,
+      description,
+      category,
+      price,
+      phone,
+      _id: cardId,
+    } = this.state.formData;
+
     return (
       <AuthCard>
         <Title className={styles.authTitle} level={2}>
@@ -73,6 +96,7 @@ class AddProduct extends Component {
             name="title"
             placeholder=""
             onChange={this.handleInputChange}
+            value={title}
           />
           <Input
             label="Фото"
@@ -88,6 +112,7 @@ class AddProduct extends Component {
             name="description"
             placeholder=""
             onChange={this.handleInputChange}
+            value={description}
           />
           <Select
             label="Категорія товару"
@@ -95,6 +120,7 @@ class AddProduct extends Component {
             name="category"
             placeholder=""
             onChange={this.handleInputChange}
+            value={category}
           />
           <Input
             label="Ціна"
@@ -102,6 +128,7 @@ class AddProduct extends Component {
             name="price"
             placeholder="0.00 грн"
             onChange={this.handleInputChange}
+            value={price}
           />
           <Input
             label="Телефон"
@@ -110,7 +137,17 @@ class AddProduct extends Component {
             name="phone"
             placeholder="+38 (0--) --- -- --"
             onChange={this.handleInputChange}
+            value={phone}
           />
+          <IconButton
+            type="button"
+            onClick={() => this.deleteCard(cardId)}
+            className={styles.delete}
+            aria-label="Видалити оголошення"
+          >
+            <DeleteIcon /> Видалити оголошення
+          </IconButton>
+
           <div className={styles.buttonsContainer}>
             <PrymaryButton type="submit">Додати</PrymaryButton>
           </div>
@@ -121,8 +158,9 @@ class AddProduct extends Component {
 }
 
 const mapDispatchToProps = {
-  onSubmit: cardsOperations.addCard,
+  onSubmit: cardsOperations.editCard,
   getCurrentUser: authOperations.getCurrentUser,
+  onDeleteCard: cardsOperations.deleteCard,
 };
 
-export default connect(null, mapDispatchToProps)(AddProduct);
+export default connect(null, mapDispatchToProps)(editProductCard);

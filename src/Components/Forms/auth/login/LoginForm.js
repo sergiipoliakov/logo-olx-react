@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import styles from './LoginForm.module.css';
+import { error, defaultModules } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import * as PNotifyMobile from '@pnotify/mobile';
+import '@pnotify/mobile/dist/PNotifyMobile.css';
+
 // import { loginUser } from '../../../../services/auth/auth-login';
 import { connect } from 'react-redux';
 import AuthCard from '../../auth-card/AuthCard';
@@ -10,7 +15,6 @@ import Title from '../../../UI/typography/title';
 import { ReactComponent as CloseIcon } from '../../../../icons/close.svg';
 import { ReactComponent as GoogleIconLogo } from '../../../../icons/googleIconLogo.svg';
 import { authOperations } from '../../../../redux/auth/index';
-
 class LoginForm extends Component {
   state = {
     formData: {
@@ -23,6 +27,7 @@ class LoginForm extends Component {
     e.preventDefault();
 
     this.props.onLogin(this.state.formData);
+    this.props.onModalClose();
 
     // console.log('submited');
     // console.log(this.state.formData);

@@ -43,7 +43,7 @@ const logIn = credentials => async dispatch => {
 
   try {
     const response = await axios.post('/auth/login', credentials);
-    console.log(response.data.accessToken);
+    // console.log(response.data.accessToken);
 
     token.set(response.data.accessToken);
     dispatch(authActions.loginSuccess(response.data));
@@ -61,8 +61,6 @@ const logIn = credentials => async dispatch => {
  */
 const logOut = () => async dispatch => {
   dispatch(authActions.logoutRequest());
-
-  console.log(axios.defaults.headers.common.Authorization);
 
   try {
     await axios.post('auth/logout');
@@ -86,19 +84,33 @@ const logOut = () => async dispatch => {
 const getCurrentUser = () => async (dispatch, getState) => {
   const {
     auth: { token: persistedToken },
+    auth: { sid },
+    auth: { refreshToken },
   } = getState();
 
   if (!persistedToken) {
     return;
   }
+  const data = JSON.stringify({
+    sid,
+  });
 
+  const config = {
+    method: 'post',
+    url: 'https://callboard-backend.herokuapp.com/auth/refresh',
+    headers: {
+      Authorization: `Bearer ${refreshToken}`,
+      'Content-Type': 'application/json',
+    },
+    data: data,
+  };
   token.set(persistedToken);
   dispatch(authActions.getCurrentUserRequest());
 
   try {
-    const response = await axios.get('/user');
-
+    const response = await axios(config);
     dispatch(authActions.getCurrentUserSuccess(response.data));
+    token.set(response.data.newAccessToken);
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
   }

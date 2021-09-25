@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+
+import { connect } from 'react-redux';
+import { allCardsOperations } from '../../redux/cards';
+
 import ProductList from '../../Components/Product/ProductCardList';
 import { getCategoryCards } from '../../services/cardsService';
 
-export default class TransportPage extends Component {
+class TransportPage extends Component {
   state = {
     cards: [],
   };
@@ -10,6 +14,9 @@ export default class TransportPage extends Component {
   async componentDidMount() {
     const catygoryQuerty = this.props.location.pathname;
     const { data } = await getCategoryCards(catygoryQuerty);
+
+    this.props.setAllCardsToCardsState(data);
+
     this.setState(prevState => ({
       cards: data,
     }));
@@ -19,3 +26,9 @@ export default class TransportPage extends Component {
     return <ProductList items={cards} />;
   }
 }
+
+const mapDispatchToProps = {
+  setAllCardsToCardsState: allCardsOperations.setAllCardsToCardsState,
+};
+
+export default connect(null, mapDispatchToProps)(TransportPage);

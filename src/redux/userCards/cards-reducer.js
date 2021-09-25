@@ -11,6 +11,9 @@ import {
   addCardRequest,
   addCardSuccess,
   addCardError,
+  editCardRequest,
+  editCardSuccess,
+  editCardError,
   deleteCardRequest,
   deleteCardSuccess,
   deleteCardError,
@@ -18,14 +21,26 @@ import {
   deleteFavouritRequest,
   deleteFavouritSuccess,
   deleteFavouritError,
+  // setCardIdRequest,
+  setCardIdSuccess,
+  setCardIdError,
   clearError,
 } from './cards-actions';
 
 const userCards = createReducer([], {
   [fetchUserCardsSuccess]: (_, { payload }) => payload.favourites,
   [addCardSuccess]: (state, { payload }) => [...state, payload],
+
+  [editCardSuccess]: (state, { payload }) => [
+    ...state.filter(({ _id }) => _id !== payload._id),
+    payload,
+  ],
   [deleteCardSuccess]: (state, { payload }) =>
     state.filter(({ _id }) => _id !== payload),
+});
+
+const cardId = createReducer('', {
+  [setCardIdSuccess]: (_, { payload }) => payload,
 });
 
 const favouritCards = createReducer([], {
@@ -48,6 +63,9 @@ const loading = createReducer(false, {
   [addCardRequest]: () => true,
   [addCardSuccess]: () => false,
   [addCardError]: () => false,
+  [editCardRequest]: () => true,
+  [editCardSuccess]: () => false,
+  [editCardError]: () => false,
   [deleteCardRequest]: () => true,
   [deleteCardSuccess]: () => false,
   [deleteCardError]: () => false,
@@ -57,14 +75,18 @@ const setError = (_, { payload }) => payload;
 const error = createReducer(null, {
   [fetchUserCardsError]: setError,
   [fetchUserFavouritCardsError]: setError,
+  [addCardError]: setError,
   [deleteFavouritError]: setError,
   [deleteCardError]: setError,
+  [editCardError]: setError,
+  [setCardIdError]: setError,
 
   [clearError]: () => null,
 });
 export default combineReducers({
   userCards,
   favouritCards,
+  cardId,
   loading,
   error,
 });
