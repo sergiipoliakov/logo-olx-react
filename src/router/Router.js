@@ -43,7 +43,6 @@ export default function Router() {
           <Route path={paths.SECOND} exact component={HomePage2} />
           <Route path={paths.THIRD} exact component={HomePage3} />
           <Route path={paths.MAIN} exact component={HomePage1} />
-
           <Route path={paths.PROPERTY} component={PropertyPage} />
           <Route path={paths.TRASPORT} component={TransportPage} />
           <Route path={paths.WORK} component={WorkPage} />

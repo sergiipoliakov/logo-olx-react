@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './ProductCardList.module.css';
 import PrimaryButton from '../../UI/buttons/PrimaryButton';
 import ProductCard from '../ProductCard';
+import Container from '../../UI/Container/Container';
 
 function ProductList({ items, isUserCardsPage, isFavouritesCardsPage }) {
   const [unSet, setUnSet] = useState(12);
@@ -14,7 +15,7 @@ function ProductList({ items, isUserCardsPage, isFavouritesCardsPage }) {
   const paginatedCards = makePagineate(items);
 
   return (
-    <div className={styles.container}>
+    <>
       <ul className={styles.list}>
         {paginatedCards.map(item => (
           <ProductCard
@@ -42,7 +43,7 @@ function ProductList({ items, isUserCardsPage, isFavouritesCardsPage }) {
           </PrimaryButton>
         )}
       </div>
-    </div>
+    </>
   );
 }
 
