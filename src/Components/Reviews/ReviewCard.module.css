@@ -15,11 +15,16 @@
   justify-content: space-between;
 }
 
+.imgContainer {
+  margin-right: 38px;
+}
+
 .mainImage {
   width: 380px;
   height: 471px;
+  margin-bottom: 10px;
 }
-.smallImage {
+.smallImage img {
   width: 68px;
   height: 73px;
   background-color: var(--burder-color);
@@ -27,6 +32,9 @@
 }
 .smallImageContainer {
   display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 .title {
   margin-bottom: 5px;
@@ -68,13 +76,18 @@
 .name {
   display: flex;
 }
-.hardIcon {
+.hardIconBtn {
+  display: flex;
+  align-items: center;
   margin-top: 20px;
   border: none;
   cursor: pointer;
 }
-.hardIcon:hover {
+.hardIconBtn:hover {
   color: var(--main-color);
+}
+.hardIconBtn:hover svg {
+  fill: var(--main-color);
 }
 
 .description {

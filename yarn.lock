@@ -1270,6 +1270,18 @@
     "minimatch" "^3.0.4"
     "strip-json-comments" "^3.1.1"
 
+"@fortawesome/fontawesome-common-types@^0.2.36":
+  "integrity" "sha512-a/7BiSgobHAgBWeN7N0w+lAhInrGxksn13uK7231n2m8EDPE3BMCl9NZLTGrj9ZXfCmC6LM0QLqXidIizVQ6yg=="
+  "resolved" "https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.36.tgz"
+  "version" "0.2.36"
+
+"@fortawesome/free-solid-svg-icons@^5.13.0":
+  "integrity" "sha512-JLmQfz6tdtwxoihXLg6lT78BorrFyCf59SAwBM6qV/0zXyVeDygJVb3fk+j5Qat+Yvcxp1buLTY5iDh1ZSAQ8w=="
+  "resolved" "https://registry.npmjs.org/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.15.4.tgz"
+  "version" "5.15.4"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.36"
+
 "@gar/promisify@^1.0.1":
   "integrity" "sha512-82cpyJyKRoQoRi+14ibCeGPu0CwypgtBAdBhq1WfvagpCZNKqwXbKwXllYSMG91DhmG4jt9gN8eP6lGOtozuaw=="
   "resolved" "https://registry.npmjs.org/@gar/promisify/-/promisify-1.1.2.tgz"
@@ -1556,6 +1568,102 @@
     "native-url" "^0.2.6"
     "schema-utils" "^2.6.5"
     "source-map" "^0.7.3"
+
+"@pnotify/animate@5.2.0":
+  "integrity" "sha512-vVkf4e5HbabA5BJSzq7NxO6OQuGfWqH8HrWsiNwwpG6S0QRIUFeaazeKlVBFoNB/5YScP9kfNQUTNW/WSf/R9g=="
+  "resolved" "https://registry.npmjs.org/@pnotify/animate/-/animate-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@pnotify/core" "^5.2.0"
+
+"@pnotify/bootstrap3@5.2.0":
+  "integrity" "sha512-x+dgybTPFi7KuDiwx407iI2RiJTqk9OyZvXa4cO4lPFHxLqmrxSgTwUjCagdRYizXyXIdKI3VfF86pubPfq3cQ=="
+  "resolved" "https://registry.npmjs.org/@pnotify/bootstrap3/-/bootstrap3-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@pnotify/core" "^5.2.0"
+
+"@pnotify/bootstrap4@5.2.0":
+  "integrity" "sha512-yjHCpUEAm64BrgGvrjL4+iPrwRkmVU5hL9khjruImFr29oXlA7dufzK1kIapFKNcUpLmu5izfcWHIfqf3rPBuQ=="
+  "resolved" "https://registry.npmjs.org/@pnotify/bootstrap4/-/bootstrap4-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@pnotify/core" "^5.2.0"
+
+"@pnotify/confirm@5.2.0":
+  "integrity" "sha512-lGiuPu2arjdysjQVrAMLZxGcP3T6+5U5MVzVmA8SjVl9L67mIqcg7EzW1YNwNQynnXVOyWrTLHaI3LeCe2ixag=="
+  "resolved" "https://registry.npmjs.org/@pnotify/confirm/-/confirm-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@pnotify/core" "^5.2.0"
+
+"@pnotify/core@^5.2.0", "@pnotify/core@5.2.0":
+  "integrity" "sha512-d9ZM7Q6ZxuwTJ14QbOa7pWmoUqObPis7S1K+TzISffrL8w2f7JigEPI281agLShVAMIsE5SsC6O9YhkutwekbA=="
+  "resolved" "https://registry.npmjs.org/@pnotify/core/-/core-5.2.0.tgz"
+  "version" "5.2.0"
+
+"@pnotify/countdown@5.2.0":
+  "integrity" "sha512-yl2azfUCvx2syJ4BPxYN2EAp07XxNDUHMMR7DsC3X8FhEfWk2+hguyVZRVPlaONU21zrzlCNVRVOapB7uHBFgA=="
+  "resolved" "https://registry.npmjs.org/@pnotify/countdown/-/countdown-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@pnotify/core" "^5.2.0"
+
+"@pnotify/desktop@5.2.0":
+  "integrity" "sha512-pJ5wBpZWoALO6H7lh04euS9UDQ6b/ZkJXkIP90GhzeeW5drPNKJRCLnLnDGvGCdxnH7ZkXoL9Ez+KtL0V6+joA=="
+  "resolved" "https://registry.npmjs.org/@pnotify/desktop/-/desktop-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@pnotify/core" "^5.2.0"
+
+"@pnotify/font-awesome4@5.2.0":
+  "integrity" "sha512-meUjDUXWQfRai1jCmC9fb632dLnXauDZ90Bg8kO8KPIhGRAKHg+eRj+Tp3DbiWF5whqOvx0Ig9x6OCExqC+9Yg=="
+  "resolved" "https://registry.npmjs.org/@pnotify/font-awesome4/-/font-awesome4-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@pnotify/core" "^5.2.0"
+
+"@pnotify/font-awesome5-fix@^5.1.0", "@pnotify/font-awesome5-fix@5.2.0":
+  "integrity" "sha512-2lnaF/kNqij/Cn533f52wo+8gb3u8BLUn+OJn/hQt3de9BiPXwmqnLlq3f8CGL+nF9QEP9vecnr0z2z17LIDOw=="
+  "resolved" "https://registry.npmjs.org/@pnotify/font-awesome5-fix/-/font-awesome5-fix-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@pnotify/core" "^5.2.0"
+
+"@pnotify/font-awesome5@5.2.0":
+  "integrity" "sha512-zeUIQHhaCTfqITcsRFn1c7+RGny1hDt+YevNWNzAnw+D97YrYZPdMTHtjjtskbwMEa0xK+vtr1Jskggz3fqWpg=="
+  "resolved" "https://registry.npmjs.org/@pnotify/font-awesome5/-/font-awesome5-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@pnotify/core" "^5.2.0"
+
+"@pnotify/glyphicon@5.2.0":
+  "integrity" "sha512-e7EYKUNqeIQwsyLeorulGbMzHuraz/cNO5oKf6SRfZahNrGvHDKfJC0we9G2Damq8AlLHAIJU1NlEtLn6ZP/+A=="
+  "resolved" "https://registry.npmjs.org/@pnotify/glyphicon/-/glyphicon-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@pnotify/core" "^5.2.0"
+
+"@pnotify/mobile@5.2.0":
+  "integrity" "sha512-uu0V7h41Y8UTQA6ZB26PcHU7wHu5nwP/FEmMyimHEpEqhrvkzIRD2CxB7zu9SYp3Jk2NFcJC3NiueO3Kh25CVA=="
+  "resolved" "https://registry.npmjs.org/@pnotify/mobile/-/mobile-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@pnotify/core" "^5.2.0"
+
+"@pnotify/paginate@5.2.0":
+  "integrity" "sha512-Pkj6klpquri8UwFyPteEoGIgd/Q6xBJePuGe/TYBo7jmMFOR72ZoFuxkxWlbyoyXZGHpcfaLk8q9zjsspHhnsw=="
+  "resolved" "https://registry.npmjs.org/@pnotify/paginate/-/paginate-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@pnotify/core" "^5.2.0"
+
+"@pnotify/reference@5.2.0":
+  "integrity" "sha512-oPeiS6M9tgwvkQ47vdAzmanIgdVu+n+RaO6/6wrTiJi4zdkuH8PooI8EkHN+IMdpy+EOOJkmPGOvG5Es7pHr0Q=="
+  "resolved" "https://registry.npmjs.org/@pnotify/reference/-/reference-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@pnotify/core" "^5.2.0"
 
 "@reduxjs/toolkit@^1.6.1":
   "integrity" "sha512-pa3nqclCJaZPAyBhruQtiRwtTjottRrVJqziVZcWzI73i6L3miLTtUyWfauwv08HWtiXLx1xGyGt+yLFfW/d0A=="
@@ -2388,6 +2496,11 @@
   "resolved" "https://registry.npmjs.org/alphanum-sort/-/alphanum-sort-1.0.2.tgz"
   "version" "1.0.2"
 
+"animate.css@^3.7.2":
+  "integrity" "sha512-0bE8zYo7C0KvgOYrSVfrzkbYk6IOTVPNqkiHg2cbyF4Pq/PXzilz4BRWA3hwEUBoMp5VBgrC29lQIZyhRWdBTw=="
+  "resolved" "https://registry.npmjs.org/animate.css/-/animate.css-3.7.2.tgz"
+  "version" "3.7.2"
+
 "ansi-colors@^3.0.0":
   "integrity" "sha512-hHUXGagefjN2iRrID63xckIvotOXOojhQKWIPUZ4mNUZ9nLZW+7FMNoE1lOkEhNWYsx/7ysGIuJYCiMAA9FnrA=="
   "resolved" "https://registry.npmjs.org/ansi-colors/-/ansi-colors-3.2.4.tgz"
@@ -2994,6 +3107,16 @@
   "integrity" "sha1-aN/1++YMUes3cl6p4+0xDcwed24="
   "resolved" "https://registry.npmjs.org/boolbase/-/boolbase-1.0.0.tgz"
   "version" "1.0.0"
+
+"bootstrap@^3.4.1":
+  "integrity" "sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA=="
+  "resolved" "https://registry.npmjs.org/bootstrap/-/bootstrap-3.4.1.tgz"
+  "version" "3.4.1"
+
+"bootstrap@^4.4.1":
+  "integrity" "sha512-Io55IuQY3kydzHtbGvQya3H+KorS/M9rSNyfCGCg9WZ4pyT/lCxIlpJgG1GXW/PswzC84Tr2fBYi+7+jFVQQBw=="
+  "resolved" "https://registry.npmjs.org/bootstrap/-/bootstrap-4.6.0.tgz"
+  "version" "4.6.0"
 
 "brace-expansion@^1.1.7":
   "integrity" "sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA=="
@@ -5440,6 +5563,11 @@
   "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.13.2.tgz"
   "version" "1.13.2"
 
+"font-awesome@^4.7.0":
+  "integrity" "sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM="
+  "resolved" "https://registry.npmjs.org/font-awesome/-/font-awesome-4.7.0.tgz"
+  "version" "4.7.0"
+
 "for-in@^1.0.2":
   "integrity" "sha1-gQaNKVqBQuwKxybG4iAMMPttXoA="
   "resolved" "https://registry.npmjs.org/for-in/-/for-in-1.0.2.tgz"
@@ -7110,6 +7238,11 @@
     "import-local" "^3.0.2"
     "jest-cli" "^26.6.0"
 
+"jquery@1.9.1 - 3":
+  "integrity" "sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw=="
+  "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.6.0.tgz"
+  "version" "3.6.0"
+
 "js-base64@^2.1.9":
   "integrity" "sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ=="
   "resolved" "https://registry.npmjs.org/js-base64/-/js-base64-2.6.4.tgz"
@@ -8646,12 +8779,37 @@
   dependencies:
     "semver-compare" "^1.0.0"
 
+"pnotify@^5.2.0":
+  "integrity" "sha512-1Ydx5oMiq+b23HVwmM/v8t97Prq/FmqRPK8RGxDb0c9GzYePFb7DvvUQbtbdghVR6YlcPAfT4P/hEKhT5Ic6xg=="
+  "resolved" "https://registry.npmjs.org/pnotify/-/pnotify-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@pnotify/animate" "5.2.0"
+    "@pnotify/bootstrap3" "5.2.0"
+    "@pnotify/bootstrap4" "5.2.0"
+    "@pnotify/confirm" "5.2.0"
+    "@pnotify/core" "5.2.0"
+    "@pnotify/countdown" "5.2.0"
+    "@pnotify/desktop" "5.2.0"
+    "@pnotify/font-awesome4" "5.2.0"
+    "@pnotify/font-awesome5" "5.2.0"
+    "@pnotify/font-awesome5-fix" "5.2.0"
+    "@pnotify/glyphicon" "5.2.0"
+    "@pnotify/mobile" "5.2.0"
+    "@pnotify/paginate" "5.2.0"
+    "@pnotify/reference" "5.2.0"
+
 "pnp-webpack-plugin@1.6.4":
   "integrity" "sha512-7Wjy+9E3WwLOEL30D+m8TSTF7qJJUJLONBnwQp0518siuMxUQUbgZwssaFX+QKlZkjHZcw/IpZCt/H0srrntSg=="
   "resolved" "https://registry.npmjs.org/pnp-webpack-plugin/-/pnp-webpack-plugin-1.6.4.tgz"
   "version" "1.6.4"
   dependencies:
     "ts-pnp" "^1.1.6"
+
+"popper.js@^1.16.1":
+  "integrity" "sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ=="
+  "resolved" "https://registry.npmjs.org/popper.js/-/popper.js-1.16.1.tgz"
+  "version" "1.16.1"
 
 "portfinder@^1.0.26":
   "integrity" "sha512-Se+2isanIcEqf2XMHjyUKskczxbPH7dQnlMjXX6+dybayyHvAf/TCgyMRlzf/B6QDhAEFOGes0pzRo3by4AbMA=="
@@ -9716,6 +9874,11 @@
   "resolved" "https://registry.npmjs.org/react-multi-carousel/-/react-multi-carousel-2.6.5.tgz"
   "version" "2.6.5"
 
+"react-notifications-component@^3.1.0":
+  "integrity" "sha512-qq+zgqVIa2zhlw+RvO2QSPk7xHLvZWTHl9VKRO56sMUef/UrcUTqOswL0DSJtRIpZYZhclquQUfDxD6H2w8aWA=="
+  "resolved" "https://registry.npmjs.org/react-notifications-component/-/react-notifications-component-3.1.0.tgz"
+  "version" "3.1.0"
+
 "react-only-when@^1.0.2":
   "integrity" "sha512-agE6l3L6bqaVuwNtjihTQ36M+VBfPS63KOzcNL4ZTmlwSxQPvhzIqmBWfiol0/wLYmKxCcBqgXkEJpvj5Kob8Q=="
   "resolved" "https://registry.npmjs.org/react-only-when/-/react-only-when-1.0.2.tgz"
@@ -9840,7 +10003,7 @@
   dependencies:
     "prop-types" "^15.6.2"
 
-"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^15.0.0 || ^16.0.0", "react@^16.0.0-0", "react@^16.14.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@^17.0.2", "react@>= 16", "react@>= 16.8.0", "react@>=15", "react@15 - 17", "react@17.0.2":
+"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^15.0.0 || ^16.0.0", "react@^16.0.0-0", "react@^16.14.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@^17.0.1", "react@^17.0.2", "react@>= 16", "react@>= 16.8.0", "react@>=15", "react@15 - 17", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"

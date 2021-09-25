@@ -1,11 +1,18 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { allCardsOperations } from '../../redux/cards';
+
 // import { authSelectors } from '../../redux/auth';
 import ProductList from '../../Components/Product/ProductCardList';
 import { cardsSelectors, cardsOperations } from '../../redux/userCards';
 
-function Favourites({ cards, onGetUserFavouritCards }) {
+function Favourites({
+  cards,
+  onGetUserFavouritCards,
+  setAllCardsToCardsState,
+}) {
   useEffect(() => {
+    setAllCardsToCardsState(cards);
     onGetUserFavouritCards();
   }, []);
 
@@ -17,6 +24,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   onGetUserFavouritCards: cardsOperations.fetchUserFavouritCards,
+  setAllCardsToCardsState: allCardsOperations.setAllCardsToCardsState,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Favourites);

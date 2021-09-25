@@ -4,6 +4,8 @@ import { nanoid } from 'nanoid';
 
 const Select = props => {
   const { name, label, className, value, ...restProps } = props;
+  console.log('🚀 ~ file: Select.js ~ line 7 ~ value', value);
+
   const id = nanoid();
   const classList = [className, styles.selectWrapper].join(' ');
   return (
@@ -14,17 +16,17 @@ const Select = props => {
         </label>
       )}
       <select
+        {...restProps}
         name={name}
         id={id}
-        {...restProps}
         className={styles.select}
         defaultValue={value}
       >
-        <option value="property">Значение</option>
+        <option value="property">Недвижимость</option>
         <option value="transport">Транспорт</option>
         <option value="trade">Обмен</option>
         <option value="free">Бесплатно</option>
-        <option value="reсreation and sport">воссоздание и Спорт</option>
+        <option value="recreation and sport">воссоздание и Спорт</option>
         <option value="business and services">Бизнес и Сарвис 3</option>
         <option value="electronics">Елекронника</option>
         <option value="work">Робота</option>
@@ -34,7 +36,7 @@ const Select = props => {
 };
 Select.defaultProps = {
   value: 'property',
-  name: null,
+  name: '',
   label: '',
   className: '',
 };

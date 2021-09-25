@@ -14,6 +14,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import cardsReducer from './userCards/cards-reducer';
 import { authReducer } from './auth';
+import { callCardsReducer } from './cards';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -26,7 +27,7 @@ const middleware = [
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'sid', 'refreshToken'],
 };
 
 const cardsPersistConfig = {
@@ -36,10 +37,16 @@ const cardsPersistConfig = {
   blacklist: ['loading', 'error'],
 };
 
+const allCardsPersistConfig = {
+  key: 'allCards',
+  storage,
+};
+
 const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     cards: persistReducer(cardsPersistConfig, cardsReducer),
+    allCards: persistReducer(allCardsPersistConfig, callCardsReducer),
   },
   middleware,
   devTools: true,

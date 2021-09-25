@@ -1,13 +1,17 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import withShowModal from '../../hoc/withShowModal';
+
 import styles from './ProductCard.module.css';
 import IconButton from '../../UI/IconButton';
 import { ReactComponent as HardIcon } from '../../../icons/Hard.svg';
 import { ReactComponent as EditIcon } from '../../../icons/editIcon.svg';
 import { ReactComponent as FullScreenIcon } from '../../../icons/fullscreen.svg';
 import { cardsOperations } from '../../../redux/userCards';
+import { allCardsOperations } from '../../../redux/cards';
 
 const ProductCard = ({
+  value,
   imageSrc,
   oldPrice,
   price,
@@ -17,8 +21,19 @@ const ProductCard = ({
   isFavouritesCardsPage,
   onFavouritClick,
   onFavouritDelete,
-  onDeleteCard,
+  setUserCardId,
+  setCardId,
 }) => {
+  function openReviewProductCard() {
+    setCardId(id);
+    value.onReviewProductClick();
+  }
+
+  function openEditProductCard() {
+    setUserCardId(id);
+    value.onEditProductClick();
+  }
+
   return (
     <li className={styles.card}>
       <div className={styles.wraper}>
@@ -48,7 +63,7 @@ const ProductCard = ({
               className={styles.editIcon}
               data-id={id}
               aria-label="editIcon"
-              onClick={() => onDeleteCard(id)}
+              onClick={openEditProductCard}
             >
               <EditIcon data-id={id} />
             </IconButton>
@@ -57,6 +72,7 @@ const ProductCard = ({
             className={styles.fullScreenIcon}
             data-id={id}
             aria-label="fullScreenIcon"
+            onClick={openReviewProductCard}
           >
             <FullScreenIcon data-id={id} />
           </IconButton>
@@ -91,6 +107,8 @@ const mapDispatchToProps = {
   onFavouritClick: cardsOperations.addCardToFavourit,
   onFavouritDelete: cardsOperations.deleteFavourit,
   onDeleteCard: cardsOperations.deleteCard,
+  setUserCardId: cardsOperations.cardId,
+  setCardId: allCardsOperations.cardId,
 };
 
-export default connect(null, mapDispatchToProps)(ProductCard);
+export default withShowModal(connect(null, mapDispatchToProps)(ProductCard));

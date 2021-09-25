@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { allCardsOperations } from '../../redux/cards';
+
 import styles from './HomePage3.module.css';
 import PaginationBtns from '../../Components/UI/PaginationBtns';
 
@@ -15,6 +18,12 @@ class HomePage3 extends Component {
 
   async componentDidMount() {
     const { data } = await getCards(3);
+
+    const allCards = [...data.property];
+
+    if (data) {
+      this.props.setAllCardsToCardsState(allCards);
+    }
 
     this.setState(prevState => ({
       cards: data,
@@ -34,4 +43,10 @@ class HomePage3 extends Component {
   }
 }
 
-export default HomePage3;
+// const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+  setAllCardsToCardsState: allCardsOperations.setAllCardsToCardsState,
+};
+
+export default connect(null, mapDispatchToProps)(HomePage3);

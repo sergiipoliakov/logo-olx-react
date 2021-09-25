@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import styles from './HomePage2.module.css';
 
 import PaginationBtns from '../../Components/UI/PaginationBtns';
 
 import MyCarousel from '../../Components/Carousel/Carousel';
+import { allCardsOperations } from '../../redux/cards';
 
 import { getCards } from '../../services/cardsService';
 
@@ -19,6 +22,17 @@ class HomePage extends Component {
 
   async componentDidMount() {
     const { data } = await getCards(2);
+
+    const cards = [
+      ...data.electronics,
+      ...data.trade,
+      ...data.transport,
+      ...data.work,
+    ];
+
+    if (data) {
+      this.props.setAllCardsToCardsState(cards);
+    }
 
     this.setState(prevState => ({
       cards: data,
@@ -45,4 +59,10 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+  setAllCardsToCardsState: allCardsOperations.setAllCardsToCardsState,
+};
+
+export default connect(null, mapDispatchToProps)(HomePage);

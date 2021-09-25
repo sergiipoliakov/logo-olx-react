@@ -22,6 +22,10 @@ export const addCardRequest = createAction('cards/addCardRequest');
 export const addCardSuccess = createAction('cards/addCardSuccess');
 export const addCardError = createAction('cards/addCardError');
 
+export const editCardRequest = createAction('cards/editCardRequest');
+export const editCardSuccess = createAction('cards/editCardSuccess');
+export const editCardError = createAction('cards/editCardError');
+
 export const addCardToFavouritRequest = createAction(
   'cards/addCardToFavouritRequest',
 );
@@ -57,5 +61,8 @@ export const deleteCardError = createAction('cards/deleteCardError');
 // export const toggleCompletedError = createAction(
 //   'posters/toggleCompletedError',
 // );
+export const setCardIdRequest = createAction('cards/setCardIdRequest');
+export const setCardIdSuccess = createAction('cards/setCardIdSuccess');
+export const setCardIdError = createAction('cards/setCardIdError');
 
 export const clearError = createAction('cards/clearError');
