@@ -22,15 +22,15 @@
     "redux-persist": "^6.0.0",
     "styled-components": "^5.3.1",
     "svg-sprite-loader": "^6.0.9",
-    "web-vitals": "^1.0.1",
-    "predeploy": "npm run build",
-    "deploy": "netlify deploy -p"
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "netlify deploy -p"
   },
   "eslintConfig": {
     "extends": [
