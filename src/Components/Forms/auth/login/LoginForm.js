@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import styles from './LoginForm.module.css';
-import { error, defaultModules } from '@pnotify/core';
-import '@pnotify/core/dist/PNotify.css';
-import * as PNotifyMobile from '@pnotify/mobile';
-import '@pnotify/mobile/dist/PNotifyMobile.css';
 
 // import { loginUser } from '../../../../services/auth/auth-login';
 import { connect } from 'react-redux';
@@ -14,7 +10,7 @@ import PrymaryButton from '../../../UI/buttons';
 import Title from '../../../UI/typography/title';
 import { ReactComponent as CloseIcon } from '../../../../icons/close.svg';
 import { ReactComponent as GoogleIconLogo } from '../../../../icons/googleIconLogo.svg';
-import { authOperations } from '../../../../redux/auth/index';
+import { authOperations, authSelectors } from '../../../../redux/auth/index';
 class LoginForm extends Component {
   state = {
     formData: {
@@ -26,16 +22,13 @@ class LoginForm extends Component {
   handlSubmit = async e => {
     e.preventDefault();
 
-    this.props.onLogin(this.state.formData);
-    this.props.onModalClose();
+    await this.props.onLogin(this.state.formData);
 
-    // console.log('submited');
-    // console.log(this.state.formData);
-    // try {
-    //   await loginUser(this.state.formData);
-    // } catch (error) {
-    //   console.error(error.message);
-    // }
+    if (!this.props.isAuthenticated && this.props.errorMessage !== null) {
+      alert(this.props.errorMessage?.message);
+      return;
+    }
+    this.props.onModalClose();
   };
 
   handleInputChange = e => {
@@ -74,12 +67,14 @@ class LoginForm extends Component {
             className={styles.authInput}
             name="email"
             placeholder="Email"
+            type="email"
             onChange={this.handleInputChange}
           />
           <Input
             className={styles.authInput}
             name="password"
             placeholder="Password"
+            type="password"
             onChange={this.handleInputChange}
           />
           <div className={styles.buttonsContainer}>
@@ -91,9 +86,13 @@ class LoginForm extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  isAuthenticated: authSelectors.getIsAuthenticated(state),
+  errorMessage: authSelectors.getErrorMessage(state),
+});
 
 const mapDispatchToProps = {
   onLogin: authOperations.logIn,
 };
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

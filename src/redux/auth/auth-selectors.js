@@ -2,9 +2,11 @@
 const getIsAuthenticated = state => state.auth.isAuthenticated;
 const getUserCards = state => state.auth.user.calls;
 const getUserFavoriteCards = state => state.auth.user.favourites;
+const getErrorMessage = state => state.auth.error;
 
 export default {
   getUserCards,
   getUserFavoriteCards,
   getIsAuthenticated,
+  getErrorMessage,
 };

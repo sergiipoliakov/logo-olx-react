@@ -4,7 +4,6 @@ import { nanoid } from 'nanoid';
 
 const Select = props => {
   const { name, label, className, value, ...restProps } = props;
-  console.log('🚀 ~ file: Select.js ~ line 7 ~ value', value);
 
   const id = nanoid();
   const classList = [className, styles.selectWrapper].join(' ');

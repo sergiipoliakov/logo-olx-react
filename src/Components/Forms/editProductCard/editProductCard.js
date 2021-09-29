@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { cardsOperations } from '../../../redux/userCards';
+import { cardsOperations, cardsSelectors } from '../../../redux/userCards';
 import styles from './editProductCard.module.css';
 import AuthCard from '../../Forms/auth-card/AuthCard';
 import Title from '../../UI/typography/title';
@@ -12,7 +12,7 @@ import IconButton from '../../UI/IconButton';
 import { ReactComponent as CloseIcon } from '../../../icons/close.svg';
 import { ReactComponent as DeleteIcon } from '../../../icons/delete.svg';
 
-import { authOperations } from '../../../redux/auth';
+// import { authOperations } from '../../../redux/auth';
 
 class editProductCard extends Component {
   state = {
@@ -38,9 +38,9 @@ class editProductCard extends Component {
     this.props.onModalClose();
   };
 
-  handlSubmit = e => {
+  handlSubmit = async e => {
     e.preventDefault();
-    const { file, title, description, category, price, phone } =
+    const { file, title, description, category, price, phone, _id } =
       this.state.formData;
 
     const data = new FormData();
@@ -51,8 +51,13 @@ class editProductCard extends Component {
     data.append('phone', phone);
     data.append('file', file);
 
-    this.props.onSubmit(data);
-    // this.props.getCurrentUser();
+    await this.props.onSubmit(_id, data);
+
+    if (this.props.errorMessage !== null) {
+      alert(this.props.errorMessage?.message);
+      return;
+    }
+
     this.props.onModalClose();
   };
 
@@ -135,7 +140,7 @@ class editProductCard extends Component {
             type="phone"
             className={styles.addFormIput}
             name="phone"
-            placeholder="+38 (0--) --- -- --"
+            placeholder="+380000000000"
             onChange={this.handleInputChange}
             value={phone}
           />
@@ -157,10 +162,13 @@ class editProductCard extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  errorMessage: cardsSelectors.getErrorMessage(state),
+});
+
 const mapDispatchToProps = {
   onSubmit: cardsOperations.editCard,
-  getCurrentUser: authOperations.getCurrentUser,
   onDeleteCard: cardsOperations.deleteCard,
 };
 
-export default connect(null, mapDispatchToProps)(editProductCard);
+export default connect(mapStateToProps, mapDispatchToProps)(editProductCard);

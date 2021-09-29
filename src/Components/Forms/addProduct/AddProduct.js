@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { cardsOperations } from '../../../redux/userCards';
+import { cardsOperations, cardsSelectors } from '../../../redux/userCards';
 import styles from './AddProduct.module.css';
 import AuthCard from '../../Forms/auth-card/AuthCard';
 import Title from '../../UI/typography/title';
@@ -10,7 +10,7 @@ import PrymaryButton from '../../UI/buttons';
 
 import IconButton from '../../UI/IconButton';
 import { ReactComponent as CloseIcon } from '../../../icons/close.svg';
-import { authOperations } from '../../../redux/auth';
+import { authOperations, authSelectors } from '../../../redux/auth';
 
 class AddProduct extends Component {
   state = {
@@ -24,7 +24,7 @@ class AddProduct extends Component {
     },
   };
 
-  handlSubmit = e => {
+  handlSubmit = async e => {
     e.preventDefault();
     const { file, title, description, category, price, phone } =
       this.state.formData;
@@ -37,9 +37,14 @@ class AddProduct extends Component {
     data.append('phone', phone);
     data.append('file', file);
 
-    this.props.onSubmit(data);
-    // this.props.getCurrentUser();
-    // this.props.onModalClose();
+    await this.props.onSubmit(data);
+
+    if (this.props.errorMessage !== null) {
+      alert(this.props.errorMessage?.message);
+      return;
+    }
+
+    this.props.onModalClose();
   };
 
   handleInputChange = e => {
@@ -108,7 +113,7 @@ class AddProduct extends Component {
             type="phone"
             className={styles.addFormIput}
             name="phone"
-            placeholder="+38 (0--) --- -- --"
+            placeholder="+380000000000"
             onChange={this.handleInputChange}
           />
           <div className={styles.buttonsContainer}>
@@ -120,9 +125,13 @@ class AddProduct extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isAuthenticated: authSelectors.getIsAuthenticated(state),
+  errorMessage: cardsSelectors.getErrorMessage(state),
+});
+
 const mapDispatchToProps = {
   onSubmit: cardsOperations.addCard,
-  getCurrentUser: authOperations.getCurrentUser,
 };
 
-export default connect(null, mapDispatchToProps)(AddProduct);
+export default connect(mapStateToProps, mapDispatchToProps)(AddProduct);

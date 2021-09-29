@@ -44,23 +44,10 @@ export const deleteFavouritSuccess = createAction(
 );
 export const deleteFavouritError = createAction('cards/deleteFavouritError');
 
-// export const editCardRequest = createAction('cards/editCardRequest');
-// export const editCardSuccess = createAction('cards/editCardSuccess');
-// export const editCardError = createAction('cards/editCardError');
-
 export const deleteCardRequest = createAction('cards/deleteCardRequest');
 export const deleteCardSuccess = createAction('cards/deleteCardSuccess');
 export const deleteCardError = createAction('cards/deleteCardError');
 
-// export const toggleCompletedRequest = createAction(
-//   'posters/toggleCompletedRequest',
-// );
-// export const toggleCompletedSuccess = createAction(
-//   'posters/toggleCompletedSuccess',
-// );
-// export const toggleCompletedError = createAction(
-//   'posters/toggleCompletedError',
-// );
 export const setCardIdRequest = createAction('cards/setCardIdRequest');
 export const setCardIdSuccess = createAction('cards/setCardIdSuccess');
 export const setCardIdError = createAction('cards/setCardIdError');

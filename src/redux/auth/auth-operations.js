@@ -47,7 +47,12 @@ const logIn = credentials => async dispatch => {
 
     token.set(response.data.accessToken);
     dispatch(authActions.loginSuccess(response.data));
+    dispatch(authActions.clearError());
   } catch (error) {
+    if (error.response) {
+      dispatch(authActions.loginError(error.response.data));
+      return;
+    }
     dispatch(authActions.loginError(error.message));
   }
 };

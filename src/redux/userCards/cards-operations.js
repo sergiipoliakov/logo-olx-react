@@ -24,6 +24,7 @@ import {
   setCardIdRequest,
   setCardIdSuccess,
   setCardIdError,
+  clearError,
 } from './cards-actions';
 
 axios.defaults.baseURL = 'https://callboard-backend.herokuapp.com';
@@ -46,24 +47,37 @@ const fetchUserFavouritCards = () => async dispatch => {
     dispatch(fetchUserFavouritCardsError(error));
   }
 };
-const addCard = formdata => dispatch => {
-  dispatch(addCardRequest());
 
-  axios
-    .post('/call', formdata)
-    .then(({ data }) => dispatch(addCardSuccess(data)))
-    .catch(error => dispatch(addCardError(error.message)));
+//
+
+const addCard = formdata => async dispatch => {
+  dispatch(addCardRequest());
+  try {
+    const { data } = await axios.post('/call', formdata);
+    dispatch(addCardSuccess(data));
+    dispatch(clearError());
+  } catch (error) {
+    if (error.response) {
+      dispatch(addCardError(error.response.data));
+      return;
+    }
+    dispatch(addCardError(error.message));
+  }
 };
 
-const editCard = (cardId, card) => async dispatch => {
+const editCard = (id, formdata) => async dispatch => {
   dispatch(editCardRequest());
 
   try {
-    const { data } = await axios.patch(`/api/card/${cardId}`, {
-      ...card,
-    });
-    dispatch(editCardSuccess(data.data.card));
+    const { data } = await axios.patch(`/call/${id}`, formdata);
+
+    dispatch(editCardSuccess(data));
+    dispatch(clearError());
   } catch (error) {
+    if (error.response) {
+      dispatch(editCardError(error.response.data));
+      return;
+    }
     dispatch(editCardError(error));
   }
 };
@@ -101,6 +115,8 @@ const cardId = id => dispatch => {
   try {
     dispatch(setCardIdSuccess(id));
   } catch (error) {
+    console.log('🚀 ~ file: cards-operations.js ~ line 118 ~ error', error);
+
     dispatch(setCardIdError(error));
   }
 };

@@ -64,6 +64,7 @@ const error = createReducer(null, {
   [authActions.loginError]: setError,
   [authActions.logoutError]: setError,
   [authActions.getCurrentUserError]: setError,
+  [authActions.clearError]: () => null,
 });
 
 export default combineReducers({
