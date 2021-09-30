@@ -28,6 +28,8 @@ const user = createReducer(initialUserState, {
 const token = createReducer(null, {
   [authActions.registerSuccess]: (_, { payload }) => payload.accessToken,
   [authActions.loginSuccess]: (_, { payload }) => payload.accessToken,
+  [authActions.loginWithGoogleSuccess]: (_, { payload }) => payload.accessToken,
+
   [authActions.logoutSuccess]: () => null,
   [authActions.getCurrentUserSuccess]: (_, { payload }) =>
     payload.newAccessToken,
@@ -35,6 +37,9 @@ const token = createReducer(null, {
 const refreshToken = createReducer(null, {
   [authActions.registerSuccess]: (_, { payload }) => payload.refreshToken,
   [authActions.loginSuccess]: (_, { payload }) => payload.refreshToken,
+  [authActions.loginWithGoogleSuccess]: (_, { payload }) =>
+    payload.refreshToken,
+
   [authActions.getCurrentUserSuccess]: (_, { payload }) =>
     payload.newRefreshToken,
   [authActions.logoutSuccess]: () => null,
@@ -43,9 +48,12 @@ const refreshToken = createReducer(null, {
 const isAuthenticated = createReducer(false, {
   [authActions.registerSuccess]: () => true,
   [authActions.loginSuccess]: () => true,
+  [authActions.loginWithGoogleSuccess]: () => true,
   [authActions.getCurrentUserSuccess]: () => true,
+
   [authActions.registerError]: () => false,
   [authActions.loginError]: () => false,
+  [authActions.loginWithGoogleError]: () => false,
   [authActions.getCurrentUserError]: () => false,
   [authActions.logoutSuccess]: () => false,
 });
@@ -53,6 +61,8 @@ const isAuthenticated = createReducer(false, {
 const sid = createReducer(null, {
   [authActions.registerSuccess]: (_, { payload }) => payload.sid,
   [authActions.loginSuccess]: (_, { payload }) => payload.sid,
+  [authActions.loginWithGoogleSuccess]: (_, { payload }) => payload.sid,
+
   [authActions.getCurrentUserSuccess]: (_, { payload }) => payload.newSid,
   [authActions.logoutSuccess]: () => null,
 });
@@ -62,6 +72,8 @@ const setError = (_, { payload }) => payload;
 const error = createReducer(null, {
   [authActions.registerError]: setError,
   [authActions.loginError]: setError,
+  [authActions.loginWithGoogleError]: setError,
+
   [authActions.logoutError]: setError,
   [authActions.getCurrentUserError]: setError,
   [authActions.clearError]: () => null,

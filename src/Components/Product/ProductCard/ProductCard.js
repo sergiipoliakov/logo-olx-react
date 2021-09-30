@@ -9,6 +9,7 @@ import { ReactComponent as EditIcon } from '../../../icons/editIcon.svg';
 import { ReactComponent as FullScreenIcon } from '../../../icons/fullscreen.svg';
 import { cardsOperations } from '../../../redux/userCards';
 import { allCardsOperations } from '../../../redux/cards';
+import { authSelectors } from '../../../redux/auth';
 
 const ProductCard = ({
   value,
@@ -23,6 +24,7 @@ const ProductCard = ({
   onFavouritDelete,
   setUserCardId,
   setCardId,
+  isAuthenticated,
 }) => {
   function openReviewProductCard() {
     setCardId(id);
@@ -42,39 +44,37 @@ const ProductCard = ({
           {isFavouritesCardsPage ? (
             <IconButton
               className={styles.hardIcon}
-              data-id={id}
               aria-label="hardIcon"
               onClick={() => onFavouritDelete(id)}
             >
-              <HardIcon data-id={id} className={styles.activeFavourit} />
+              <HardIcon className={styles.activeFavourit} />
             </IconButton>
           ) : (
             <IconButton
               className={styles.hardIcon}
-              data-id={id}
               aria-label="hardIcon"
-              onClick={() => onFavouritClick(id)}
+              onClick={() =>
+                isAuthenticated ? onFavouritClick(id) : alert('Please Login!')
+              }
             >
-              <HardIcon data-id={id} />
+              <HardIcon />
             </IconButton>
           )}
           {isUserCardsPage && (
             <IconButton
               className={styles.editIcon}
-              data-id={id}
               aria-label="editIcon"
               onClick={openEditProductCard}
             >
-              <EditIcon data-id={id} />
+              <EditIcon />
             </IconButton>
           )}
           <IconButton
             className={styles.fullScreenIcon}
-            data-id={id}
             aria-label="fullScreenIcon"
             onClick={openReviewProductCard}
           >
-            <FullScreenIcon data-id={id} />
+            <FullScreenIcon />
           </IconButton>
         </div>
       </div>
@@ -101,7 +101,9 @@ ProductCard.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-// const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  isAuthenticated: authSelectors.getIsAuthenticated(state),
+});
 
 const mapDispatchToProps = {
   onFavouritClick: cardsOperations.addCardToFavourit,
@@ -111,4 +113,6 @@ const mapDispatchToProps = {
   setCardId: allCardsOperations.cardId,
 };
 
-export default withShowModal(connect(null, mapDispatchToProps)(ProductCard));
+export default withShowModal(
+  connect(mapStateToProps, mapDispatchToProps)(ProductCard),
+);

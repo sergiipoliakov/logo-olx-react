@@ -10,7 +10,7 @@ import PrymaryButton from '../../UI/buttons';
 
 import IconButton from '../../UI/IconButton';
 import { ReactComponent as CloseIcon } from '../../../icons/close.svg';
-import { authOperations, authSelectors } from '../../../redux/auth';
+import { authSelectors } from '../../../redux/auth';
 
 class AddProduct extends Component {
   state = {

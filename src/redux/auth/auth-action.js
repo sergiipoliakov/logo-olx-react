@@ -12,6 +12,10 @@ const logoutRequest = createAction('auth/logoutRequest');
 const logoutSuccess = createAction('auth/logoutSuccess');
 const logoutError = createAction('auth/logoutError');
 
+const loginWithGoogleRequest = createAction('auth/loginWithGoogleRequest');
+const loginWithGoogleSuccess = createAction('auth/loginWithGoogleSuccess');
+const loginWithGoogleError = createAction('auth/loginWithGoogleError');
+
 const getCurrentUserRequest = createAction('auth/getCurrentUserRequest');
 const getCurrentUserSuccess = createAction('auth/getCurrentUserSuccess');
 const getCurrentUserError = createAction('auth/getCurrentUserError');
@@ -31,5 +35,8 @@ export default {
   getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
+  loginWithGoogleRequest,
+  loginWithGoogleSuccess,
+  loginWithGoogleError,
   clearError,
 };

@@ -12,12 +12,6 @@ const token = {
   },
 };
 
-/*
- * POST @ /users/signup
- * body { name, email, password }
- *
- * После успешной регистрации добавляем токен в HTTP-заголовок
- */
 const register = credentials => async dispatch => {
   dispatch(authActions.registerRequest());
 
@@ -26,24 +20,21 @@ const register = credentials => async dispatch => {
 
     token.set(response.data.accessToken);
     dispatch(authActions.registerSuccess(response.data));
+    dispatch(authActions.clearError());
   } catch (error) {
+    if (error.response) {
+      dispatch(authActions.registerError(error.response.data));
+      return;
+    }
     dispatch(authActions.registerError(error.message));
   }
 };
 
-/*
- * POST @ /users/login
- * body:
- *    { email, password }
- *
- * После успешного логина добавляем токен в HTTP-заголовок
- */
 const logIn = credentials => async dispatch => {
   dispatch(authActions.loginRequest());
 
   try {
     const response = await axios.post('/auth/login', credentials);
-    // console.log(response.data.accessToken);
 
     token.set(response.data.accessToken);
     dispatch(authActions.loginSuccess(response.data));
@@ -56,14 +47,24 @@ const logIn = credentials => async dispatch => {
     dispatch(authActions.loginError(error.message));
   }
 };
+const logInWithGoogle = () => async dispatch => {
+  dispatch(authActions.loginWithGoogleRequest());
 
-/*
- * POST @ /users/logout
- * headers:
- *    Authorization: Bearer token
- *
- * 1. После успешного логаута, удаляем токен из HTTP-заголовка
- */
+  try {
+    const response = await axios.get('/auth/google');
+
+    token.set(response.data.accessToken);
+    dispatch(authActions.loginWithGoogleSuccess(response.data));
+    dispatch(authActions.clearError());
+  } catch (error) {
+    if (error.response) {
+      dispatch(authActions.loginWithGoogleError(error.response.data));
+      return;
+    }
+    dispatch(authActions.loginWithGoogleError(error.message));
+  }
+};
+
 const logOut = () => async dispatch => {
   dispatch(authActions.logoutRequest());
 
@@ -77,15 +78,6 @@ const logOut = () => async dispatch => {
   }
 };
 
-/*
- * GET @ /users/current
- * headers:
- *    Authorization: Bearer token
- *
- * 1. Забираем токен из стейта через getState()
- * 2. Если токена нет, выходим не выполняя никаких операций
- * 3. Если токен есть, добавляет его в HTTP-заголовок и выполянем операцию
- */
 const getCurrentUser = () => async (dispatch, getState) => {
   const {
     auth: { token: persistedToken },
@@ -121,4 +113,4 @@ const getCurrentUser = () => async (dispatch, getState) => {
   }
 };
 
-export default { register, logOut, logIn, getCurrentUser };
+export default { register, logOut, logIn, getCurrentUser, logInWithGoogle };
