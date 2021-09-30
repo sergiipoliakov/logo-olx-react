@@ -6,9 +6,6 @@
 .authInput:last-child {
   margin-bottom: 0;
 }
-.form {
-  width: 436px;
-}
 .closeBtn {
   position: absolute;
   top: 25px;
@@ -35,13 +32,4 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 34px;
-}
-.disabled {
-  background: var(--burder-color);
-  color: var(--white-color);
-}
-.disabled:hover {
-  background: var(--burder-color);
-  color: var(--white-color);
-  cursor: not-allowed;
 }

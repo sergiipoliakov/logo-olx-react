@@ -10,13 +10,13 @@ import { authSelectors } from '../redux/auth';
 const PrivateRoute = ({
   component: Component,
   isAuthenticated,
-  redirectTo,
+
   ...routeProps
 }) => (
   <Route
     {...routeProps}
     render={props =>
-      isAuthenticated ? <Component {...props} /> : <Redirect to={redirectTo} />
+      isAuthenticated ? <Component {...props} /> : <Redirect to="/" />
     }
   />
 );

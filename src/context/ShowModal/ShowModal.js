@@ -28,10 +28,23 @@ export default class AuthContext extends Component {
     }));
   };
 
+  onSearchFormClick = () => {
+    this.setState(state => ({
+      showModal: true,
+      modalContent: '/search',
+    }));
+  };
+
   onLoginClick = () => {
     this.setState(state => ({
       showModal: true,
       modalContent: '/login',
+    }));
+  };
+  onRegisterClick = () => {
+    this.setState(state => ({
+      showModal: true,
+      modalContent: '/register',
     }));
   };
 
@@ -43,6 +56,8 @@ export default class AuthContext extends Component {
     onLoginClick: this.onLoginClick,
     onToggleModal: this.toggleModal,
     onReviewProductClick: this.onReviewProductClick,
+    onRegisterClick: this.onRegisterClick,
+    onSearchFormClick: this.onSearchFormClick,
   };
 
   render() {

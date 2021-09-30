@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
-import styles from './LoginForm.module.css';
-
-// import { loginUser } from '../../../../services/auth/auth-login';
+import styles from './RegisterForm.module.css';
 import { connect } from 'react-redux';
-import withShowModal from '../../../hoc/withShowModal';
 import AuthCard from '../../auth-card/AuthCard';
 import Input from '../../../UI/input';
 import IconButton from '../../../UI/IconButton';
 import PrymaryButton from '../../../UI/buttons';
 import Title from '../../../UI/typography/title';
 import { ReactComponent as CloseIcon } from '../../../../icons/close.svg';
-import { ReactComponent as GoogleIconLogo } from '../../../../icons/googleIconLogo.svg';
 import { authOperations, authSelectors } from '../../../../redux/auth/index';
-class LoginForm extends Component {
+
+class RegisterForm extends Component {
   state = {
-    isError: false,
     formData: {
       email: '',
       password: '',
@@ -24,19 +20,13 @@ class LoginForm extends Component {
   handlSubmit = async e => {
     e.preventDefault();
 
-    await this.props.onLogin(this.state.formData);
+    await this.props.onRegister(this.state.formData);
 
     if (!this.props.isAuthenticated && this.props.errorMessage !== null) {
-      if (
-        this.props.errorMessage?.message ===
-        `User with ${this.state.formData.email} email doesn't exist`
-      ) {
-        this.setState({ isError: true });
-      }
       alert(this.props.errorMessage?.message);
-
       return;
     }
+    this.props.onLogin(this.state.formData);
     this.props.onModalClose();
   };
 
@@ -50,17 +40,10 @@ class LoginForm extends Component {
       },
     }));
   };
-  onRegisterClick = e => {
-    this.props.value.onRegisterClick();
-  };
 
   render() {
-    const { isError } = this.state;
     return (
       <AuthCard>
-        <Title className={styles.authTitle} level={2}>
-          Ви можете авторизуватися за допомогою Googlt Account:
-        </Title>
         <IconButton
           onClick={this.props.onModalClose}
           className={styles.closeBtn}
@@ -68,18 +51,11 @@ class LoginForm extends Component {
         >
           <CloseIcon />
         </IconButton>
-        <PrymaryButton
-          className={styles.googleIcon}
-          type="button"
-          onClick={this.props.onGoogleLogin}
-        >
-          <GoogleIconLogo />
-          Google
-        </PrymaryButton>
+
         <Title className={styles.authTitle} level={2}>
-          Або зайти за допомогою імейлу і пароля, попередньо зареєструвавшись:
+          зареєструйтесь за допомогою імейлу і пароля
         </Title>
-        <form className={styles.form} onSubmit={this.handlSubmit}>
+        <form onSubmit={this.handlSubmit}>
           <Input
             className={styles.authInput}
             name="email"
@@ -95,16 +71,8 @@ class LoginForm extends Component {
             onChange={this.handleInputChange}
           />
           <div className={styles.buttonsContainer}>
-            <PrymaryButton
-              type="submit"
-              disabled={isError}
-              className={isError ? styles.disabled : ''}
-            >
-              Увійти
-            </PrymaryButton>
-            <PrymaryButton type="button" onClick={this.onRegisterClick}>
-              Зареєструватись
-            </PrymaryButton>
+            {/* <PrymaryButton type="submit">Увійти</PrymaryButton> */}
+            <PrymaryButton type="submit">Зареєструватись</PrymaryButton>
           </div>
         </form>
       </AuthCard>
@@ -117,10 +85,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  onRegister: authOperations.register,
   onLogin: authOperations.logIn,
-  onGoogleLogin: authOperations.logInWithGoogle,
 };
 
-export default withShowModal(
-  connect(mapStateToProps, mapDispatchToProps)(LoginForm),
-);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);

@@ -11,12 +11,16 @@ import { authSelectors } from '../../../redux/auth';
 import { paths } from '../../../router/Router';
 
 const Navigation = ({ value, isAuthenticated }) => {
-  const { onAddProductClick } = value;
+  const { onAddProductClick, onSearchFormClick } = value;
 
   return (
     <div className={styles.authNav}>
       <div>
-        <Link to="/search" className={styles.search}>
+        <Link
+          to="/search"
+          className={styles.search}
+          onClick={onSearchFormClick}
+        >
           <SearchIcon />
         </Link>
       </div>
@@ -28,7 +32,11 @@ const Navigation = ({ value, isAuthenticated }) => {
       <div className={styles.userMenu}>
         {isAuthenticated ? <UserMenu /> : <AuthNav />}
 
-        <PrimaryButton className={styles.button} onClick={onAddProductClick}>
+        <PrimaryButton
+          disabled={!isAuthenticated}
+          className={styles.button}
+          onClick={onAddProductClick}
+        >
           СТВОРИТИ ОГОЛОШЕННЯ!
         </PrimaryButton>
       </div>

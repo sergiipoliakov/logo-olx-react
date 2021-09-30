@@ -32,7 +32,7 @@ const userCards = createReducer([], {
   [addCardSuccess]: (state, { payload }) => [...state, payload],
 
   [editCardSuccess]: (state, { payload }) => [
-    ...state.filter(({ _id }) => _id !== payload._id),
+    ...state.filter(({ _id }) => _id !== payload.id),
     payload,
   ],
   [deleteCardSuccess]: (state, { payload }) =>
