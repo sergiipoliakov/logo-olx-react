@@ -9,6 +9,7 @@ function UserCardsPage({ cards, onGetUserCards, setAllCardsToCardsState }) {
   useEffect(() => {
     setAllCardsToCardsState(cards);
     onGetUserCards();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <ProductList items={cards} isUserCardsPage={true} />;

@@ -43,8 +43,6 @@ class HomePage3 extends Component {
   }
 }
 
-// const mapStateToProps = state => ({});
-
 const mapDispatchToProps = {
   setAllCardsToCardsState: allCardsOperations.setAllCardsToCardsState,
 };

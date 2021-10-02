@@ -18,10 +18,14 @@ import TradePage from '../pages/TradePage';
 import UserCards from '../pages/UserCards';
 import UserFavouritesCardsPage from '../pages/Favourites';
 
+import SearchPage from '../pages/SearchPage';
+
 export const paths = {
   MAIN: '/',
   SECOND: '/page=2',
   THIRD: '/page=3',
+
+  SEARCH: '/search',
 
   PROPERTY: '/property',
   TRASPORT: '/transport',
@@ -43,6 +47,9 @@ export default function Router() {
           <Route path={paths.SECOND} exact component={HomePage2} />
           <Route path={paths.THIRD} exact component={HomePage3} />
           <Route path={paths.MAIN} exact component={HomePage1} />
+
+          <Route path={paths.SEARCH} component={SearchPage} />
+
           <Route path={paths.PROPERTY} component={PropertyPage} />
           <Route path={paths.TRASPORT} component={TransportPage} />
           <Route path={paths.WORK} component={WorkPage} />

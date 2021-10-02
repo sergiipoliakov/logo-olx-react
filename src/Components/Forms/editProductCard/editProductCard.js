@@ -40,7 +40,7 @@ class editProductCard extends Component {
 
   handlSubmit = async e => {
     e.preventDefault();
-    const { file, title, description, category, price, phone, _id } =
+    const { file, title, description, category, price, phone, _id, id } =
       this.state.formData;
 
     const data = new FormData();
@@ -51,7 +51,7 @@ class editProductCard extends Component {
     data.append('phone', phone);
     data.append('file', file);
 
-    await this.props.onSubmit(_id, data);
+    await this.props.onSubmit(_id ? _id : id, data);
 
     if (this.props.errorMessage !== null) {
       alert(this.props.errorMessage?.message);
@@ -80,6 +80,7 @@ class editProductCard extends Component {
       price,
       phone,
       _id: cardId,
+      id,
     } = this.state.formData;
 
     return (
@@ -146,7 +147,7 @@ class editProductCard extends Component {
           />
           <IconButton
             type="button"
-            onClick={() => this.deleteCard(cardId)}
+            onClick={() => this.deleteCard(cardId ? cardId : id)}
             className={styles.delete}
             aria-label="Видалити оголошення"
           >

@@ -5,6 +5,7 @@ import UserMenu from '../UserMenu';
 import AuthNav from '../AuthNav';
 import styles from './Navigation.module.css';
 import PrimaryButton from '../../UI/buttons/PrimaryButton';
+import IconButton from '../../UI/IconButton';
 import { ReactComponent as SearchIcon } from '../../../icons/search.svg';
 import withShowModal from '../../hoc/withShowModal';
 import { authSelectors } from '../../../redux/auth';
@@ -16,13 +17,13 @@ const Navigation = ({ value, isAuthenticated }) => {
   return (
     <div className={styles.authNav}>
       <div>
-        <Link
-          to="/search"
+        <IconButton
           className={styles.search}
           onClick={onSearchFormClick}
+          aria-label="search"
         >
           <SearchIcon />
-        </Link>
+        </IconButton>
       </div>
       <div>
         <Link to={paths.MAIN} className={styles.logo}>

@@ -91,7 +91,7 @@ const ProductCard = ({
 };
 ProductCard.defaultProps = {
   imageSrc:
-    'https://mcleansmartialarts.com/wp-content/uploads/2017/04/default-image-620x600.jpg',
+    'https://mpama.com/wp-content/uploads/2017/04/default-image-620x600.jpg',
 };
 
 ProductCard.propTypes = {

@@ -117,8 +117,6 @@ ReviewCard.propTypes = {
   }),
 };
 
-const mapStateToProps = state => ({});
-
 const mapDispatchToProps = {
   onFavouritClick: cardsOperations.addCardToFavourit,
 };
