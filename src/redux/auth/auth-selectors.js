@@ -4,9 +4,11 @@ const getUserCards = state => state.auth.user.calls;
 const getUserFavoriteCards = state => state.auth.user.favourites;
 const getErrorMessage = state => state.auth.error;
 
-export default {
+const selectors = {
   getUserCards,
   getUserFavoriteCards,
   getIsAuthenticated,
   getErrorMessage,
 };
+
+export default selectors;

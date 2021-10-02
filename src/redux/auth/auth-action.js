@@ -22,7 +22,7 @@ const getCurrentUserError = createAction('auth/getCurrentUserError');
 
 const clearError = createAction('auth/clearError');
 
-export default {
+const actions = {
   registerRequest,
   registerSuccess,
   registerError,
@@ -40,3 +40,5 @@ export default {
   loginWithGoogleError,
   clearError,
 };
+
+export default actions;

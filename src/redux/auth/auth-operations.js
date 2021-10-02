@@ -112,5 +112,11 @@ const getCurrentUser = () => async (dispatch, getState) => {
     dispatch(authActions.getCurrentUserError(error.message));
   }
 };
-
-export default { register, logOut, logIn, getCurrentUser, logInWithGoogle };
+const operations = {
+  register,
+  logOut,
+  logIn,
+  getCurrentUser,
+  logInWithGoogle,
+};
+export default operations;

@@ -5,10 +5,14 @@
   height: 70px;
 }
 .search {
+  border: none;
+  background: transparent;
   margin-left: 24px;
+  cursor: pointer;
 }
-.search:hover {
-  border-bottom: 2px solid var(--main-color);
+
+.search:hover svg {
+  fill: var(--main-color);
 }
 .logo {
   margin: 0;

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+
 import styles from './SearchForm.module.css';
 import { connect } from 'react-redux';
+import { allCardsOperations } from '../../../redux/cards';
 import AuthCard from '../../Forms/auth-card/AuthCard';
 import IconButton from '../../UI/IconButton';
 
 import { ReactComponent as CloseIcon } from '../../../icons/close.svg';
 import { ReactComponent as SearchIcon } from '../../../icons/search.svg';
 
-export default class SearchForm extends Component {
+class SearchForm extends Component {
   state = {
     query: '',
   };
@@ -18,9 +20,15 @@ export default class SearchForm extends Component {
     });
   };
 
-  handlSubmit = event => {
+  handlSubmit = async event => {
     event.preventDefault();
-    console.log(this.state.query);
+
+    if (this.state.query === '') {
+      return;
+    }
+
+    await this.props.onSearchProduct(this.state.query);
+    window.location.replace('/search');
   };
 
   render() {
@@ -47,3 +55,10 @@ export default class SearchForm extends Component {
     );
   }
 }
+// const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+  onSearchProduct: allCardsOperations.searchProduct,
+};
+
+export default connect(null, mapDispatchToProps)(SearchForm);

@@ -32,7 +32,9 @@ const userCards = createReducer([], {
   [addCardSuccess]: (state, { payload }) => [...state, payload],
 
   [editCardSuccess]: (state, { payload }) => [
-    ...state.filter(({ _id }) => _id !== payload.id),
+    ...state.filter(({ _id, id }) =>
+      _id ? _id !== payload.id : id !== payload.id,
+    ),
     payload,
   ],
   [deleteCardSuccess]: (state, { payload }) =>
@@ -45,7 +47,7 @@ const cardId = createReducer('', {
 
 const favouritCards = createReducer([], {
   [fetchUserFavouritCardsSuccess]: (_, { payload }) => payload.favourites,
-  [addCardToFavouritSuccess]: (state, { payload }) => [...state, ...payload],
+  [addCardToFavouritSuccess]: (state, { payload }) => payload,
   [deleteFavouritSuccess]: (state, { payload }) =>
     state.filter(({ _id }) => _id !== payload),
 });

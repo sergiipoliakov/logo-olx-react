@@ -50,7 +50,7 @@ function ProductList({ items, isUserCardsPage, isFavouritesCardsPage }) {
 ProductList.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
     }),
   ),
 };

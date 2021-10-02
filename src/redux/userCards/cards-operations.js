@@ -115,13 +115,10 @@ const cardId = id => dispatch => {
   try {
     dispatch(setCardIdSuccess(id));
   } catch (error) {
-    console.log('🚀 ~ file: cards-operations.js ~ line 118 ~ error', error);
-
     dispatch(setCardIdError(error));
   }
 };
-
-export default {
+const operations = {
   fetchUserCards,
   addCard,
   editCard,
@@ -131,3 +128,5 @@ export default {
   deleteFavourit,
   cardId,
 };
+
+export default operations;

@@ -9,7 +9,8 @@ const getReviewCard = state => {
 
   return reviewCard;
 };
-
-export default {
+const selectors = {
   getReviewCard,
+  getAllCards,
 };
+export default selectors;

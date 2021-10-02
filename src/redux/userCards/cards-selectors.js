@@ -5,14 +5,17 @@ const getCardId = state => state.cards.cardId;
 const getErrorMessage = state => state.cards.error;
 const getEditCard = state => {
   const id = getCardId(state);
-  const editCard = getAllUserCards(state).find(card => card._id === id);
+  const editCard = getAllUserCards(state).find(card =>
+    card._id ? card._id === id : card.id === id,
+  );
   return editCard;
 };
-
-export default {
+const selectors = {
   getAllUserCards,
   getEditCard,
   getAllUserFavouritCards,
   getLoading,
   getErrorMessage,
 };
+
+export default selectors;

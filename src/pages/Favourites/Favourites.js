@@ -14,6 +14,7 @@ function Favourites({
   useEffect(() => {
     setAllCardsToCardsState(cards);
     onGetUserFavouritCards();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <ProductList items={cards} isFavouritesCardsPage={true} />;

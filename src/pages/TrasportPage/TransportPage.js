@@ -13,6 +13,7 @@ class TransportPage extends Component {
 
   async componentDidMount() {
     const catygoryQuerty = this.props.location.pathname;
+
     const { data } = await getCategoryCards(catygoryQuerty);
 
     this.props.setAllCardsToCardsState(data);

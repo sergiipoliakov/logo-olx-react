@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import {
   fetchAllCardsRequest,
   fetchAllCardsSuccess,
@@ -5,6 +7,10 @@ import {
   setCardIdRequest,
   setCardIdSuccess,
   setCardIdError,
+  searchProductRequest,
+  searchProductSuccess,
+  searchProductError,
+  clearError,
 } from './allCards-action';
 
 const setAllCardsToCardsState = cards => dispatch => {
@@ -27,7 +33,24 @@ const cardId = id => dispatch => {
   }
 };
 
-export default {
+const searchProduct = query => async dispatch => {
+  dispatch(searchProductRequest());
+
+  try {
+    const { data } = await axios.get(`/call/find?search=${query}`);
+    dispatch(searchProductSuccess(data));
+    dispatch(clearError());
+  } catch (error) {
+    if (error.response) {
+      dispatch(searchProductError(error.response));
+    }
+  }
+};
+
+const operations = {
   setAllCardsToCardsState,
   cardId,
+  searchProduct,
 };
+
+export default operations;
