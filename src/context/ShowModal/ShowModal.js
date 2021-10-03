@@ -35,6 +35,13 @@ export default class AuthContext extends Component {
     }));
   };
 
+  onAppBarClick = () => {
+    this.setState(state => ({
+      showModal: true,
+      modalContent: '/appBar',
+    }));
+  };
+
   onLoginClick = () => {
     this.setState(state => ({
       showModal: true,
@@ -58,6 +65,7 @@ export default class AuthContext extends Component {
     onReviewProductClick: this.onReviewProductClick,
     onRegisterClick: this.onRegisterClick,
     onSearchFormClick: this.onSearchFormClick,
+    onAppBarClick: this.onAppBarClick,
   };
 
   render() {

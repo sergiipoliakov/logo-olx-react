@@ -38,7 +38,7 @@ const userCards = createReducer([], {
     payload,
   ],
   [deleteCardSuccess]: (state, { payload }) =>
-    state.filter(({ _id }) => _id !== payload),
+    state.filter(({ _id, id }) => (_id ? _id !== payload : id !== payload)),
 });
 
 const cardId = createReducer('', {

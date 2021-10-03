@@ -5,6 +5,7 @@ import { allCardsSelectors } from '../../redux/cards';
 import Modal from './Modal';
 import Login from '../../Components/Forms/auth/login';
 import RegisterForm from '../Forms/auth/registr/RegisterForm';
+import AppBar from '../Header/AppBar/AppBar';
 import ReviewCard from '../../Components/Reviews';
 import AddProduct from '../../Components/Forms/addProduct/AddProduct';
 import EditProductCard from '../../Components/Forms/editProductCard';
@@ -27,6 +28,9 @@ const ModalPage = props => {
           )}
           {modalContent === '/search' && (
             <SearchForm onModalClose={onToggleModal} />
+          )}
+          {modalContent === '/appBar' && (
+            <AppBar onModalClose={onToggleModal} />
           )}
 
           {modalContent === '/review' && (

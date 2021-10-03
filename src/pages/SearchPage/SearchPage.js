@@ -11,8 +11,15 @@ class SearchPage extends Component {
     cards: [],
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     if (this.props.cards) {
+      this.setState(prevState => ({
+        cards: this.props.cards,
+      }));
+    }
+  }
+  componentDidUpdate() {
+    if (this.state.cards !== this.props.cards) {
       this.setState(prevState => ({
         cards: this.props.cards,
       }));
@@ -21,7 +28,16 @@ class SearchPage extends Component {
 
   render() {
     const { cards } = this.state;
-    return <ProductList items={cards} />;
+
+    return (
+      <>
+        {cards.length === 0 ? (
+          <h2>Нечего не найдено</h2>
+        ) : (
+          <ProductList items={cards} />
+        )}
+      </>
+    );
   }
 }
 const mapStateToProps = state => ({
