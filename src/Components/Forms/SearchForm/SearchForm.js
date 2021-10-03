@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 
 import styles from './SearchForm.module.css';
 import { connect } from 'react-redux';
@@ -26,9 +27,9 @@ class SearchForm extends Component {
     if (this.state.query === '') {
       return;
     }
-
     await this.props.onSearchProduct(this.state.query);
-    window.location.replace('/search');
+
+    this.props.history.push('/search');
   };
 
   render() {
@@ -61,4 +62,4 @@ const mapDispatchToProps = {
   onSearchProduct: allCardsOperations.searchProduct,
 };
 
-export default connect(null, mapDispatchToProps)(SearchForm);
+export default withRouter(connect(null, mapDispatchToProps)(SearchForm));

@@ -1,15 +1,16 @@
-.list {
+.AppBar {
+  position: relative;
   height: 70px;
+  border-top: 1px solid var(--burder-color);
+  border-bottom: 1px solid var(--burder-color);
+}
+.list {
   margin: 0;
   padding: 0;
   list-style: none;
   display: flex;
-  align-items: center;
-  border-top: 1px solid var(--burder-color);
-  border-bottom: 1px solid var(--burder-color);
-
-  /* justify-content: center; */
 }
+
 .list > li {
   margin: 20px;
 }
@@ -23,4 +24,61 @@
 .active {
   color: var(--main-color);
   text-decoration: underline;
+}
+
+.AppBar .MobileNavigation {
+  display: none;
+}
+@media (max-width: 1199px) {
+  .AppBar .NornaleNavigation {
+    display: none;
+  }
+  .AppBar .MobileNavigation {
+    display: flex;
+    align-items: center;
+  }
+
+  .AppBar .MobileNavigation .openBtn {
+    position: absolute;
+    width: 63px;
+    height: 69px;
+
+    top: 0;
+    background: none;
+    border: none;
+    border-right: 1px solid var(--burder-color);
+    cursor: pointer;
+  }
+  .AppBar .MobileNavigation .closeBtn {
+    position: absolute;
+    width: 63px;
+    height: 69px;
+
+    top: 0;
+    background: none;
+    border: none;
+    border-right: 1px solid var(--burder-color);
+    cursor: pointer;
+  }
+  .AppBar .list {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 338px;
+
+    /* background: #18181850; */
+    z-index: 23;
+  }
+  .AppBar .list li {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 26px 0;
+    padding-left: 40px;
+    background: var(--white-color);
+
+    border-bottom: 1px solid var(--burder-color);
+  }
 }

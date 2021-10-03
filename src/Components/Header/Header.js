@@ -6,6 +6,7 @@ function Header(props) {
   return (
     <div>
       <Navigation />
+
       <AppBar />
     </div>
   );
