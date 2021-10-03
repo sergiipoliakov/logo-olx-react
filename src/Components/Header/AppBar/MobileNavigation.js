@@ -11,11 +11,19 @@ export default function MobailNavigation() {
   return (
     <div className={styles.MobileNavigation}>
       {open ? (
-        <IconButton className={styles.closeBtn} onClick={() => setOpen(false)}>
+        <IconButton
+          className={styles.closeBtn}
+          onClick={() => setOpen(false)}
+          aria-label="close"
+        >
           <CloseIcon />
         </IconButton>
       ) : (
-        <IconButton className={styles.openBtn} onClick={() => setOpen(true)}>
+        <IconButton
+          className={styles.openBtn}
+          onClick={() => setOpen(true)}
+          aria-label="open"
+        >
           <OpenMenuBurger />
         </IconButton>
       )}
