@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .container:hover .list {
@@ -15,8 +16,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 70px;
+  /* width: 60px;
+  height: 70px; */
   margin-left: 20px;
   padding: 10px;
   border-left: 1px solid var(--inactive-color);
@@ -36,14 +37,13 @@
 }
 .list {
   position: absolute;
-  top: -27px;
-  left: -10px;
+  top: -31px;
+  left: -42px;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
   width: 206px;
-  height: 94px;
+  padding: 20px;
   background: var(--inactive-color);
   box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.15);
   opacity: 0;
@@ -51,3 +51,61 @@
   transform: translateY(0);
   transition: var(--animation-timing);
 }
+
+.list li:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.list li a {
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+.buttonContainerMobile {
+  display: none;
+}
+.logOutMobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .list {
+    top: -60px;
+    left: -65px;
+    width: 152px;
+  }
+
+  .title {
+    display: none;
+  }
+
+  .buttonContainer {
+    display: none;
+  }
+
+  .container {
+    height: 60px;
+    width: 40px;
+  }
+  .appBarListMobile {
+    display: flex;
+  }
+  .logOutMobile {
+    display: flex;
+    position: absolute;
+    top: 53px;
+    left: 94px;
+  }
+}
+
+@media (max-width: 460px) {
+  .dropMenu {
+    position: relative;
+  }
+  .list {
+    top: -100px;
+    left: -146px;
+    width: 112px;
+  }
+} ;

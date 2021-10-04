@@ -38,7 +38,14 @@ const Navigation = ({ value, isAuthenticated }) => {
           className={styles.button}
           onClick={onAddProductClick}
         >
-          СТВОРИТИ ОГОЛОШЕННЯ!
+          <span>СТВОРИТИ ОГОЛОШЕННЯ!</span>
+        </PrimaryButton>
+        <PrimaryButton
+          disabled={!isAuthenticated}
+          className={styles.buttonMobile}
+          onClick={onAddProductClick}
+        >
+          +
         </PrimaryButton>
       </div>
     </div>

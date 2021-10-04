@@ -19,7 +19,6 @@
   align-items: center;
   justify-content: center;
   border: none;
-
   widows: 24px;
   height: 24px;
   border-radius: 50%;
@@ -53,4 +52,13 @@
   font-size: 12px;
   line-height: 14.6px;
   letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .paginationIcon {
+    display: none;
+  }
+  .button {
+    display: none;
+  }
 }
