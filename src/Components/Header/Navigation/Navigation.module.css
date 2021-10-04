@@ -45,6 +45,27 @@
   text-transform: uppercase;
 }
 .button:hover {
-  min-width: 230px;
   text-transform: uppercase;
 }
+.buttonMobile {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .buttonMobile {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 200px;
+    right: 17px;
+    z-index: 3;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  .button {
+    display: none;
+  }
+} ;

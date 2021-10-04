@@ -11,13 +11,13 @@ function UserMenu({ onLogout }) {
   return (
     <div className={styles.container}>
       <UserIcon />
-      <Title>Мій кабінет</Title>
+      <Title className={styles.title}>Мій кабінет</Title>
       <div className={styles.buttonContainer}>
         <IconButton onClick={onLogout} aria-label="logout button">
           <LogoutIcon />
         </IconButton>
       </div>
-      <div>
+      <div className={styles.dropMenu}>
         <ul className={styles.list}>
           <li>
             <Link to="/userCards" className={styles.button}>
@@ -30,6 +30,13 @@ function UserMenu({ onLogout }) {
               Обране
             </Link>
           </li>
+          <IconButton
+            onClick={onLogout}
+            className={styles.logOutMobile}
+            aria-label="logout button"
+          >
+            <LogoutIcon />
+          </IconButton>
         </ul>
       </div>
     </div>
