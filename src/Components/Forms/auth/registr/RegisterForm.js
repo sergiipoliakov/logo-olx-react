@@ -44,37 +44,39 @@ class RegisterForm extends Component {
   render() {
     return (
       <AuthCard>
-        <IconButton
-          onClick={this.props.onModalClose}
-          className={styles.closeBtn}
-          aria-label="Закрыть модалку"
-        >
-          <CloseIcon />
-        </IconButton>
+        <div className={styles.registerFormContainer}>
+          <IconButton
+            onClick={this.props.onModalClose}
+            className={styles.closeBtn}
+            aria-label="Закрыть модалку"
+          >
+            <CloseIcon />
+          </IconButton>
 
-        <Title className={styles.authTitle} level={2}>
-          зареєструйтесь за допомогою імейлу і пароля
-        </Title>
-        <form onSubmit={this.handlSubmit}>
-          <Input
-            className={styles.authInput}
-            name="email"
-            placeholder="Email"
-            type="email"
-            onChange={this.handleInputChange}
-          />
-          <Input
-            className={styles.authInput}
-            name="password"
-            placeholder="Password"
-            type="password"
-            onChange={this.handleInputChange}
-          />
-          <div className={styles.buttonsContainer}>
-            {/* <PrymaryButton type="submit">Увійти</PrymaryButton> */}
-            <PrymaryButton type="submit">Зареєструватись</PrymaryButton>
-          </div>
-        </form>
+          <Title className={styles.authTitle} level={2}>
+            зареєструйтесь за допомогою імейлу і пароля
+          </Title>
+          <form onSubmit={this.handlSubmit}>
+            <Input
+              className={styles.authInput}
+              name="email"
+              placeholder="Email"
+              type="email"
+              onChange={this.handleInputChange}
+            />
+            <Input
+              className={styles.authInput}
+              name="password"
+              placeholder="Password"
+              type="password"
+              onChange={this.handleInputChange}
+            />
+            <div className={styles.buttonsContainer}>
+              {/* <PrymaryButton type="submit">Увійти</PrymaryButton> */}
+              <PrymaryButton type="submit">Зареєструватись</PrymaryButton>
+            </div>
+          </form>
+        </div>
       </AuthCard>
     );
   }

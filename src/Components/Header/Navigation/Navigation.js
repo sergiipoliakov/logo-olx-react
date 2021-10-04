@@ -38,15 +38,16 @@ const Navigation = ({ value, isAuthenticated }) => {
           className={styles.button}
           onClick={onAddProductClick}
         >
-          <span>СТВОРИТИ ОГОЛОШЕННЯ!</span>
+          СТВОРИТИ ОГОЛОШЕННЯ!
         </PrimaryButton>
-        <PrimaryButton
-          disabled={!isAuthenticated}
-          className={styles.buttonMobile}
-          onClick={onAddProductClick}
-        >
-          +
-        </PrimaryButton>
+        {isAuthenticated && (
+          <PrimaryButton
+            className={styles.buttonMobile}
+            onClick={onAddProductClick}
+          >
+            +
+          </PrimaryButton>
+        )}
       </div>
     </div>
   );

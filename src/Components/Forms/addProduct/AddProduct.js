@@ -61,65 +61,67 @@ class AddProduct extends Component {
   render() {
     return (
       <AuthCard>
-        <Title className={styles.authTitle} level={2}>
-          Додати оголошення
-        </Title>
-        <IconButton
-          onClick={this.props.onModalClose}
-          className={styles.closeBtn}
-          aria-label="Закрыть модалку"
-        >
-          <CloseIcon />
-        </IconButton>
-        <form onSubmit={this.handlSubmit}>
-          <Input
-            label="Назва товару"
-            className={styles.addFormIput}
-            name="title"
-            placeholder=""
-            onChange={this.handleInputChange}
-          />
-          <Input
-            label="Фото"
-            type="file"
-            className={styles.addFormIput}
-            name="file"
-            placeholder=""
-            onChange={this.handleInputChange}
-          />
-          <Input
-            label="Опис товару"
-            className={styles.addFormIput}
-            name="description"
-            placeholder=""
-            onChange={this.handleInputChange}
-          />
-          <Select
-            label="Категорія товару"
-            className={styles.addFormIput}
-            name="category"
-            placeholder=""
-            onChange={this.handleInputChange}
-          />
-          <Input
-            label="Ціна"
-            className={styles.addFormIput}
-            name="price"
-            placeholder="0.00 грн"
-            onChange={this.handleInputChange}
-          />
-          <Input
-            label="Телефон"
-            type="phone"
-            className={styles.addFormIput}
-            name="phone"
-            placeholder="+380000000000"
-            onChange={this.handleInputChange}
-          />
-          <div className={styles.buttonsContainer}>
-            <PrymaryButton type="submit">Додати</PrymaryButton>
-          </div>
-        </form>
+        <div className={styles.addFormContainer}>
+          <Title className={styles.authTitle} level={2}>
+            Додати оголошення
+          </Title>
+          <IconButton
+            onClick={this.props.onModalClose}
+            className={styles.closeBtn}
+            aria-label="Закрыть модалку"
+          >
+            <CloseIcon />
+          </IconButton>
+          <form onSubmit={this.handlSubmit}>
+            <Input
+              label="Назва товару"
+              className={styles.addFormIput}
+              name="title"
+              placeholder=""
+              onChange={this.handleInputChange}
+            />
+            <Input
+              label="Фото"
+              type="file"
+              className={styles.addFormIput}
+              name="file"
+              placeholder=""
+              onChange={this.handleInputChange}
+            />
+            <Input
+              label="Опис товару"
+              className={styles.addFormIput}
+              name="description"
+              placeholder=""
+              onChange={this.handleInputChange}
+            />
+            <Select
+              label="Категорія товару"
+              className={styles.addFormIput}
+              name="category"
+              placeholder=""
+              onChange={this.handleInputChange}
+            />
+            <Input
+              label="Ціна"
+              className={styles.addFormIput}
+              name="price"
+              placeholder="0.00 грн"
+              onChange={this.handleInputChange}
+            />
+            <Input
+              label="Телефон"
+              type="phone"
+              className={styles.addFormIput}
+              name="phone"
+              placeholder="+380000000000"
+              onChange={this.handleInputChange}
+            />
+            <div className={styles.buttonsContainer}>
+              <PrymaryButton type="submit">Додати</PrymaryButton>
+            </div>
+          </form>
+        </div>
       </AuthCard>
     );
   }

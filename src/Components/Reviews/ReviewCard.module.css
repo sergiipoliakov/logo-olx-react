@@ -13,6 +13,7 @@
 .content {
   display: flex;
   justify-content: space-between;
+  padding: 50px;
 }
 
 .imgContainer {
@@ -101,4 +102,53 @@
   display: flex;
   justify-content: space-between;
   width: 266px;
+}
+.titleMobile {
+  display: none;
+}
+@media (max-width: 1199px) {
+  .mainImage {
+    width: 281px;
+  }
+  .content {
+    padding: 30px;
+  }
+  .description {
+    width: 300px;
+  }
+  .funtion {
+    width: 240px;
+  }
+}
+@media (max-width: 767px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .imgContainer {
+    margin: 0;
+  }
+  .titleMobile {
+    display: flex;
+    flex-direction: column;
+  }
+  .titleNormal {
+    display: none;
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .description {
+    width: 250px;
+  }
+  .funtion {
+    width: 220px;
+  }
 }

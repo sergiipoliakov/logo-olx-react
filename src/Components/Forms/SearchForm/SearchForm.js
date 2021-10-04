@@ -43,7 +43,7 @@ class SearchForm extends Component {
           <CloseIcon />
         </IconButton>
         <form onSubmit={this.handlSubmit}>
-          <input onChange={this.handleChange} />
+          <input onChange={this.handleChange} placeholder="Пошук" />
           <IconButton
             className={styles.search}
             aria-label="поиск"

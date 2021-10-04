@@ -1,13 +1,17 @@
+.loginFormContainer {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 100px;
+  padding-right: 100px;
+  overflow: scroll;
+}
+
 .authInput {
-  width: 400px;
   margin-bottom: 24px;
   border-color: black;
 }
 .authInput:last-child {
   margin-bottom: 0;
-}
-.form {
-  width: 436px;
 }
 .closeBtn {
   position: absolute;
@@ -45,3 +49,12 @@
   color: var(--white-color);
   cursor: not-allowed;
 }
+@media (max-width: 768px) {
+  .loginFormContainer {
+    width: 290px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+} ;

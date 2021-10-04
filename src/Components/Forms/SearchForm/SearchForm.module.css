@@ -9,18 +9,69 @@
   background: none;
   cursor: pointer;
 }
+.closeBtn svg {
+  fill: var(--white-color);
+}
 
 .authCard {
   background: var(--main-color);
+  max-width: 860px;
+  /* height: 230px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+.authCard input {
+  border: none;
+  background: none;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 90px;
+  margin-bottom: 90px;
+  padding: 20px;
+  border-bottom: 1px solid black;
+  color: var(--white-color);
+  text-transform: uppercase;
+}
+.authCard svg {
+  fill: var(--white-color);
+}
+
 .search {
   position: absolute;
-  top: 50%;
-  right: 25px;
+  top: 46%;
+  right: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 0;
   background: none;
   cursor: pointer;
+}
+@media (max-width: 1199px) {
+  .authCard input {
+    width: 550px;
+    margin-left: 50px;
+    margin-right: 50px;
+
+    padding: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .authCard input {
+    width: 250px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 10px;
+  }
+  .closeBtn {
+    top: 15px;
+    right: 10px;
+  }
+  .search {
+    top: 43%;
+    right: 30px;
+  }
 }

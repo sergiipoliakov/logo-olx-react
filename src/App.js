@@ -5,7 +5,7 @@ import './App.css';
 import RoutePages from './router/Router';
 import ModalPage from './Components/Modal';
 import Header from './Components/Header';
-import Futter from './Components/Futter';
+import Footer from './Components/Footer';
 import ShowModalContext from './context/ShowModal/ShowModal';
 
 class App extends Component {
@@ -14,14 +14,16 @@ class App extends Component {
   }
   render() {
     return (
-      <>
+      <div className="App-wrapper">
         <ShowModalContext>
-          <Header />
-          <RoutePages />
+          <div className="App-content">
+            <Header />
+            <RoutePages />
+          </div>
+          <Footer />
           <ModalPage />
-          <Futter />
         </ShowModalContext>
-      </>
+      </div>
     );
   }
 }

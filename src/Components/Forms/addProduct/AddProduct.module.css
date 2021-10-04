@@ -1,10 +1,17 @@
+.addFormContainer {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
 .closeBtn {
   position: absolute;
   top: 25px;
   right: 25px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+
   border: 0;
   background: none;
   cursor: pointer;
@@ -12,6 +19,34 @@
 .addFormIput {
   margin-bottom: 20px;
 }
+.addFormIput input {
+  margin-left: 30px;
+}
+
 .buttonsContainer {
   text-align: center;
+}
+
+@media (max-width: 1199px) {
+  .addFormContainer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .addFormIput {
+    /* width: 458px; */
+  }
+}
+@media (max-width: 767px) {
+  .addFormContainer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .closeBtn {
+    top: 15px;
+    right: 10px;
+  }
 }

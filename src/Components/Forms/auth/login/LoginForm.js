@@ -58,55 +58,57 @@ class LoginForm extends Component {
     const { isError } = this.state;
     return (
       <AuthCard>
-        <Title className={styles.authTitle} level={2}>
-          Ви можете авторизуватися за допомогою Googlt Account:
-        </Title>
-        <IconButton
-          onClick={this.props.onModalClose}
-          className={styles.closeBtn}
-          aria-label="Закрыть модалку"
-        >
-          <CloseIcon />
-        </IconButton>
-        <PrymaryButton
-          className={styles.googleIcon}
-          type="button"
-          onClick={this.props.onGoogleLogin}
-        >
-          <GoogleIconLogo />
-          Google
-        </PrymaryButton>
-        <Title className={styles.authTitle} level={2}>
-          Або зайти за допомогою імейлу і пароля, попередньо зареєструвавшись:
-        </Title>
-        <form className={styles.form} onSubmit={this.handlSubmit}>
-          <Input
-            className={styles.authInput}
-            name="email"
-            placeholder="Email"
-            type="email"
-            onChange={this.handleInputChange}
-          />
-          <Input
-            className={styles.authInput}
-            name="password"
-            placeholder="Password"
-            type="password"
-            onChange={this.handleInputChange}
-          />
-          <div className={styles.buttonsContainer}>
-            <PrymaryButton
-              type="submit"
-              disabled={isError}
-              className={isError ? styles.disabled : ''}
-            >
-              Увійти
-            </PrymaryButton>
-            <PrymaryButton type="button" onClick={this.onRegisterClick}>
-              Зареєструватись
-            </PrymaryButton>
-          </div>
-        </form>
+        <div className={styles.loginFormContainer}>
+          <Title className={styles.authTitle} level={2}>
+            Ви можете авторизуватися за допомогою Googlt Account:
+          </Title>
+          <IconButton
+            onClick={this.props.onModalClose}
+            className={styles.closeBtn}
+            aria-label="Закрыть модалку"
+          >
+            <CloseIcon />
+          </IconButton>
+          <PrymaryButton
+            className={styles.googleIcon}
+            type="button"
+            onClick={this.props.onGoogleLogin}
+          >
+            <GoogleIconLogo />
+            Google
+          </PrymaryButton>
+          <Title className={styles.authTitle} level={2}>
+            Або зайти за допомогою імейлу і пароля, попередньо зареєструвавшись:
+          </Title>
+          <form className={styles.form} onSubmit={this.handlSubmit}>
+            <Input
+              className={styles.authInput}
+              name="email"
+              placeholder="Email"
+              type="email"
+              onChange={this.handleInputChange}
+            />
+            <Input
+              className={styles.authInput}
+              name="password"
+              placeholder="Password"
+              type="password"
+              onChange={this.handleInputChange}
+            />
+            <div className={styles.buttonsContainer}>
+              <PrymaryButton
+                type="submit"
+                disabled={isError}
+                className={isError ? styles.disabled : ''}
+              >
+                Увійти
+              </PrymaryButton>
+              <PrymaryButton type="button" onClick={this.onRegisterClick}>
+                Зареєструватись
+              </PrymaryButton>
+            </div>
+          </form>
+        </div>
       </AuthCard>
     );
   }

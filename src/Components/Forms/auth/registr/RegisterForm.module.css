@@ -1,5 +1,11 @@
+.registerFormContainer {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
 .authInput {
-  width: 400px;
   margin-bottom: 24px;
   border-color: black;
 }
@@ -27,9 +33,13 @@
   text-align: center;
   margin-bottom: 34px;
 }
-.googleIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 34px;
-}
+
+@media (max-width: 768px) {
+  .registerFormContainer {
+    max-width: 290px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+} ;

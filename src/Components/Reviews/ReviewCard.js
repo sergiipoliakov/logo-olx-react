@@ -36,6 +36,12 @@ function ReviewCard({
   return (
     <AuthCard>
       <div className={styles.content}>
+        <div className={styles.titleMobile}>
+          <Title className={styles.title}>{title}</Title>
+          <SubTitle level={3} className={styles.productCode}>
+            код товару | {productCode}
+          </SubTitle>
+        </div>
         <div className={styles.imgContainer}>
           <img className={styles.mainImage} src={imageUrls[0]} alt={title} />
           <ul className={styles.smallImageContainer}>
@@ -47,11 +53,13 @@ function ReviewCard({
           </ul>
         </div>
 
-        <div>
-          <Title className={styles.title}>{title}</Title>
-          <SubTitle level={3} className={styles.productCode}>
-            код товару | {productCode}
-          </SubTitle>
+        <div className={styles.info}>
+          <div className={styles.titleNormal}>
+            <Title className={styles.title}>{title}</Title>
+            <SubTitle level={3} className={styles.productCode}>
+              код товару | {productCode}
+            </SubTitle>
+          </div>
 
           <Title className={styles.price}>{price} грн</Title>
 
