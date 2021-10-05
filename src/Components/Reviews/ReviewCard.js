@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Carousel from 'react-elastic-carousel';
 
 import { cardsOperations } from '../../redux/userCards';
 
@@ -18,7 +19,8 @@ function ReviewCard({
   onModalClose,
   onFavouritClick,
   card: {
-    _id,
+    _id = '',
+    id = '',
     price = 0,
     productCode = '105-С',
     name = 'Олга',
@@ -32,6 +34,10 @@ function ReviewCard({
   },
 }) {
   const [showInfo, setShowInfo] = useState(false);
+  function myArrow({ type }) {
+    // const pointer = type === consts.PREV ? '👈' : '👉';
+    return <></>;
+  }
 
   return (
     <AuthCard>
@@ -42,15 +48,24 @@ function ReviewCard({
             код товару | {productCode}
           </SubTitle>
         </div>
-        <div className={styles.imgContainer}>
-          <img className={styles.mainImage} src={imageUrls[0]} alt={title} />
-          <ul className={styles.smallImageContainer}>
+        <div className={styles.normalCarousel}>
+          <Carousel renderArrow={myArrow}>
             {imageUrls.map(img => (
-              <li key={img} className={styles.smallImage}>
-                <img src={img} alt={title} />
-              </li>
+              <img src={img} key={img} alt={title} />
             ))}
-          </ul>
+          </Carousel>
+        </div>
+        <div className={styles.mobileCarousel}>
+          <Carousel renderArrow={myArrow}>
+            {imageUrls.map(img => (
+              <img
+                src={img}
+                key={img}
+                alt={title}
+                className={styles.mainImage}
+              />
+            ))}
+          </Carousel>
         </div>
 
         <div className={styles.info}>
@@ -96,7 +111,7 @@ function ReviewCard({
           <div className={styles.funtion}>
             <SubTitle
               className={styles.hardIconBtn}
-              onClick={() => onFavouritClick(_id)}
+              onClick={() => onFavouritClick(_id ? _id : id)}
             >
               В обране <HardIcon />
             </SubTitle>

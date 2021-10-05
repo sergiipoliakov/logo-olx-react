@@ -99,7 +99,7 @@
   }
 }
 
-@media (max-width: 460px) {
+@media (max-width: 480px) {
   .dropMenu {
     position: relative;
   }
