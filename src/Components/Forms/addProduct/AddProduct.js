@@ -5,7 +5,6 @@ import { error, defaults } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/confirm/dist/PNotifyConfirm.css';
-import * as PNotifyMobile from '@pnotify/mobile';
 
 import { cardsOperations, cardsSelectors } from '../../../redux/userCards';
 import styles from './AddProduct.module.css';

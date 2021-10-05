@@ -1,6 +1,4 @@
 .card {
   background: var(--inactive-color);
   overflow: scroll;
-  /* padding: 30px 30px 25px; */
-  /* padding: 67px 103px; */
 }
