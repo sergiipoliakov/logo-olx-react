@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import { error, defaults } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
+import '@pnotify/confirm/dist/PNotifyConfirm.css';
+import * as PNotifyMobile from '@pnotify/mobile';
+
 import { cardsOperations, cardsSelectors } from '../../../redux/userCards';
 import styles from './AddProduct.module.css';
 import AuthCard from '../../Forms/auth-card/AuthCard';
@@ -12,8 +19,12 @@ import IconButton from '../../UI/IconButton';
 import { ReactComponent as CloseIcon } from '../../../icons/close.svg';
 import { authSelectors } from '../../../redux/auth';
 
+defaults.width = '290px';
+defaults.delay = '1000';
+
 class AddProduct extends Component {
   state = {
+    error: false,
     formData: {
       title: '',
       description: '',
@@ -28,6 +39,51 @@ class AddProduct extends Component {
     e.preventDefault();
     const { file, title, description, category, price, phone } =
       this.state.formData;
+    if (title === '') {
+      this.setState({ error: true });
+
+      return error({
+        title: 'Назва',
+        text: 'Введіть Назву товару!',
+      });
+    }
+    if (description === '') {
+      this.setState({ error: true });
+
+      return error({
+        title: 'Опис',
+        text: 'Введіть Опис товару!',
+      });
+    }
+    if (category === '') {
+      this.setState({ error: true });
+
+      return error({
+        title: 'Категорію',
+        text: 'Вибиріть Категорію товару!',
+      });
+    }
+    if (price === '') {
+      this.setState({ error: true });
+      return error({
+        title: 'Ціна',
+        text: 'Введіть Ціну товару!',
+      });
+    }
+    if (phone === '') {
+      this.setState({ error: true });
+      return error({
+        title: 'Телефон',
+        text: 'Введіть Ваш телефон! формат +380961231212',
+      });
+    }
+    if (file === null) {
+      this.setState({ error: true });
+      return error({
+        title: 'Фото',
+        text: 'Загрузіть Фото Товару!',
+      });
+    }
 
     const data = new FormData();
     data.append('title', title);
@@ -40,8 +96,43 @@ class AddProduct extends Component {
     await this.props.onSubmit(data);
 
     if (this.props.errorMessage !== null) {
-      alert(this.props.errorMessage?.message);
-      return;
+      if (
+        this.props.errorMessage?.message ===
+        "Can't set price for free category. Must be 0"
+      ) {
+        return error({
+          title: 'Ціна',
+          text: 'Ціна для "Безкоштовної категорії" повинно бути 0',
+        });
+      }
+      if (
+        this.props.errorMessage?.message ===
+        "Can't set price for trade category. Must be 0"
+      ) {
+        return error({
+          title: 'Ціна',
+          text: 'Ціна для "Обміна" повинно бути 0',
+        });
+      }
+      if (
+        this.props.errorMessage?.message ===
+        "Can't set price for work category. Must be 0"
+      ) {
+        return error({
+          title: 'Ціна',
+          text: 'Ціна для "Работа" повинно бути 0',
+        });
+      }
+      if (this.props.errorMessage?.message === 'Only image files are allowed') {
+        return error({
+          title: 'Фото',
+          text: 'Допускаються лише файли зображень',
+        });
+      }
+      return error({
+        title: 'Помилка!',
+        text: `${this.props.errorMessage?.message}`,
+      });
     }
 
     this.props.onModalClose();
@@ -80,6 +171,7 @@ class AddProduct extends Component {
               placeholder=""
               onChange={this.handleInputChange}
             />
+
             <Input
               label="Фото"
               type="file"
@@ -88,6 +180,7 @@ class AddProduct extends Component {
               placeholder=""
               onChange={this.handleInputChange}
             />
+
             <Input
               label="Опис товару"
               className={styles.addFormIput}
@@ -95,6 +188,7 @@ class AddProduct extends Component {
               placeholder=""
               onChange={this.handleInputChange}
             />
+
             <Select
               label="Категорія товару"
               className={styles.addFormIput}
@@ -102,6 +196,7 @@ class AddProduct extends Component {
               placeholder=""
               onChange={this.handleInputChange}
             />
+
             <Input
               label="Ціна"
               className={styles.addFormIput}
@@ -109,6 +204,7 @@ class AddProduct extends Component {
               placeholder="0.00 грн"
               onChange={this.handleInputChange}
             />
+
             <Input
               label="Телефон"
               type="phone"
@@ -117,6 +213,7 @@ class AddProduct extends Component {
               placeholder="+380000000000"
               onChange={this.handleInputChange}
             />
+
             <div className={styles.buttonsContainer}>
               <PrymaryButton type="submit">Додати</PrymaryButton>
             </div>

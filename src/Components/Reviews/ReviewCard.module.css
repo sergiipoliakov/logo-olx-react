@@ -16,27 +16,15 @@
   padding: 50px;
 }
 
-.imgContainer {
-  margin-right: 38px;
+.normalCarousel {
+  width: 380px;
+  height: 470px;
+}
+.normalCarousel img {
+  width: 380px;
+  height: auto;
 }
 
-.mainImage {
-  width: 380px;
-  height: 471px;
-  margin-bottom: 10px;
-}
-.smallImage img {
-  width: 68px;
-  height: 73px;
-  background-color: var(--burder-color);
-  margin-right: 10px;
-}
-.smallImageContainer {
-  display: flex;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
 .title {
   margin-bottom: 5px;
   font-weight: 500;
@@ -106,10 +94,13 @@
 .titleMobile {
   display: none;
 }
+.mobileCarousel {
+  display: none;
+}
+.mobileCarousel button {
+  display: none;
+}
 @media (max-width: 1199px) {
-  .mainImage {
-    width: 281px;
-  }
   .content {
     padding: 30px;
   }
@@ -130,8 +121,9 @@
     padding-left: 10px;
     padding-right: 10px;
   }
-  .imgContainer {
-    margin: 0;
+
+  .normalCarousel {
+    display: none;
   }
   .titleMobile {
     display: flex;
@@ -150,5 +142,24 @@
   }
   .funtion {
     width: 220px;
+  }
+
+  .mobileCarousel {
+    display: block;
+    width: 281px;
+  }
+  .mobileCarousel img {
+    width: 281px;
+    height: auto;
+  }
+  .mobileCarousel button {
+    display: block;
+    width: 5px;
+    height: 5px;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  .price {
+    margin-bottom: 10px;
   }
 }

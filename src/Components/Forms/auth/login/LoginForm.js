@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import styles from './LoginForm.module.css';
+import { error } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
 
-// import { loginUser } from '../../../../services/auth/auth-login';
+import '@pnotify/confirm/dist/PNotifyConfirm.css';
+
 import { connect } from 'react-redux';
 import withShowModal from '../../../hoc/withShowModal';
 import AuthCard from '../../auth-card/AuthCard';
@@ -12,6 +16,7 @@ import Title from '../../../UI/typography/title';
 import { ReactComponent as CloseIcon } from '../../../../icons/close.svg';
 import { ReactComponent as GoogleIconLogo } from '../../../../icons/googleIconLogo.svg';
 import { authOperations, authSelectors } from '../../../../redux/auth/index';
+
 class LoginForm extends Component {
   state = {
     isError: false,
@@ -23,6 +28,18 @@ class LoginForm extends Component {
 
   handlSubmit = async e => {
     e.preventDefault();
+    if (this.state.formData.email === '') {
+      return error({
+        title: 'Email',
+        text: 'Введіть Эмаил!',
+      });
+    }
+    if (this.state.formData.password === '') {
+      return error({
+        title: 'Password',
+        text: 'Введіть Пароль!',
+      });
+    }
 
     await this.props.onLogin(this.state.formData);
 
@@ -31,11 +48,14 @@ class LoginForm extends Component {
         this.props.errorMessage?.message ===
         `User with ${this.state.formData.email} email doesn't exist`
       ) {
-        this.setState({ isError: true });
+        return error({
+          title: 'Ошибка Email',
+          text: `Користувача з електронною поштою "${this.state.formData.email}" не існує`,
+        });
       }
-      alert(this.props.errorMessage?.message);
-
-      return;
+      return error({
+        title: `${this.props.errorMessage?.message}`,
+      });
     }
     this.props.onModalClose();
   };
@@ -55,7 +75,6 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { isError } = this.state;
     return (
       <AuthCard>
         <div className={styles.loginFormContainer}>
@@ -96,13 +115,7 @@ class LoginForm extends Component {
               onChange={this.handleInputChange}
             />
             <div className={styles.buttonsContainer}>
-              <PrymaryButton
-                type="submit"
-                disabled={isError}
-                className={isError ? styles.disabled : ''}
-              >
-                Увійти
-              </PrymaryButton>
+              <PrymaryButton type="submit">Увійти</PrymaryButton>
               <PrymaryButton type="button" onClick={this.onRegisterClick}>
                 Зареєструватись
               </PrymaryButton>
