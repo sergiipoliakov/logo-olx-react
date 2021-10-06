@@ -11,6 +11,7 @@ import styles from './AddProduct.module.css';
 import AuthCard from '../../Forms/auth-card/AuthCard';
 import Title from '../../UI/typography/title';
 import Input from '../../UI/input';
+import FileInput from '../../UI/fileInput';
 import Select from '../../UI/select/Select';
 import PrymaryButton from '../../UI/buttons';
 
@@ -23,6 +24,8 @@ defaults.delay = '1000';
 
 class AddProduct extends Component {
   state = {
+    files: [],
+    imagesPreviewUrls: [],
     error: false,
     formData: {
       title: '',
@@ -30,54 +33,56 @@ class AddProduct extends Component {
       category: '',
       price: '0',
       phone: '',
-      file: null,
+      file: [],
     },
+  };
+
+  onDeleteImageClick = () => {
+    if (this.state?.files.length > 0) {
+      this.setState(prevState => {
+        return {
+          files: [],
+          imagesPreviewUrls: [],
+        };
+      });
+    }
   };
 
   handlSubmit = async e => {
     e.preventDefault();
-    const { file, title, description, category, price, phone } =
-      this.state.formData;
+    const { title, description, category, price, phone } = this.state.formData;
+    const { files } = this.state;
     if (title === '') {
-      this.setState({ error: true });
-
       return error({
         title: 'Назва',
         text: 'Введіть Назву товару!',
       });
     }
     if (description === '') {
-      this.setState({ error: true });
-
       return error({
         title: 'Опис',
         text: 'Введіть Опис товару!',
       });
     }
     if (category === '') {
-      this.setState({ error: true });
-
       return error({
         title: 'Категорію',
         text: 'Вибиріть Категорію товару!',
       });
     }
     if (price === '') {
-      this.setState({ error: true });
       return error({
         title: 'Ціна',
         text: 'Введіть Ціну товару!',
       });
     }
     if (phone === '') {
-      this.setState({ error: true });
       return error({
         title: 'Телефон',
         text: 'Введіть Ваш телефон! формат +380961231212',
       });
     }
-    if (file === null) {
-      this.setState({ error: true });
+    if (files.length === 0) {
       return error({
         title: 'Фото',
         text: 'Загрузіть Фото Товару!',
@@ -90,7 +95,15 @@ class AddProduct extends Component {
     data.append('category', category);
     data.append('price', price);
     data.append('phone', phone);
-    data.append('file', file);
+    if (files.length > 0) {
+      console.log('weq');
+      for (let i = 0; i < files.length; i += 1) {
+        console.log(files[i]);
+        data.append('file', files[i]);
+      }
+    } else {
+      data.append('file', files);
+    }
 
     await this.props.onSubmit(data);
 
@@ -138,6 +151,21 @@ class AddProduct extends Component {
   };
 
   handleInputChange = e => {
+    if (e.target.type === 'file') {
+      let files = Array.from(e.target.files);
+
+      files.forEach(file => {
+        let reader = new FileReader();
+        reader.onloadend = () => {
+          this.setState({
+            files: [...this.state.files, file],
+            imagesPreviewUrls: [...this.state.imagesPreviewUrls, reader.result],
+          });
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
     const { value, name } = e.target;
 
     this.setState(prevState => ({
@@ -149,6 +177,8 @@ class AddProduct extends Component {
   };
 
   render() {
+    const { imagesPreviewUrls } = this.state;
+
     return (
       <AuthCard>
         <div className={styles.addFormContainer}>
@@ -171,13 +201,15 @@ class AddProduct extends Component {
               onChange={this.handleInputChange}
             />
 
-            <Input
+            <FileInput
               label="Фото"
               type="file"
               className={styles.addFormIput}
               name="file"
               placeholder=""
               onChange={this.handleInputChange}
+              previewFiles={imagesPreviewUrls}
+              onDeleteImageClick={this.onDeleteImageClick}
             />
 
             <Input
