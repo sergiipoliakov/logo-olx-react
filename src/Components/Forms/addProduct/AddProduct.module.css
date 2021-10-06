@@ -1,8 +1,10 @@
 .addFormContainer {
+  height: 100vh;
   padding-top: 60px;
   padding-bottom: 60px;
   padding-left: 100px;
   padding-right: 100px;
+  overflow: scroll;
 }
 .closeBtn {
   position: absolute;
@@ -49,5 +51,8 @@
   .closeBtn {
     top: 15px;
     right: 10px;
+  }
+  .addFormIput input {
+    margin-left: 0;
   }
 }

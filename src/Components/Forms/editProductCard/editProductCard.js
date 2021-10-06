@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { error, defaults } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
+import '@pnotify/confirm/dist/PNotifyConfirm.css';
+
 import { cardsOperations, cardsSelectors } from '../../../redux/userCards';
 import styles from './editProductCard.module.css';
 import AuthCard from '../../Forms/auth-card/AuthCard';
 import Title from '../../UI/typography/title';
 import Input from '../../UI/input';
+import FileInput from '../../UI/fileInput';
+
 import Select from '../../UI/select/Select';
 import PrymaryButton from '../../UI/buttons';
 
 import IconButton from '../../UI/IconButton';
 import { ReactComponent as CloseIcon } from '../../../icons/close.svg';
 import { ReactComponent as DeleteIcon } from '../../../icons/delete.svg';
-
-// import { authOperations } from '../../../redux/auth';
+defaults.width = '230px';
+defaults.delay = '1500';
 
 class editProductCard extends Component {
   state = {
+    files: [],
+    imagesPreviewUrls: [],
     formData: {
       title: '',
       description: '',
@@ -33,6 +42,17 @@ class editProductCard extends Component {
       },
     }));
   }
+
+  onDeleteImageClick = () => {
+    if (this.state?.files.length > 0) {
+      this.setState(prevState => {
+        return {
+          files: [],
+          imagesPreviewUrls: [],
+        };
+      });
+    }
+  };
   deleteCard = id => {
     this.props.onDeleteCard(id);
     this.props.onModalClose();
@@ -40,8 +60,47 @@ class editProductCard extends Component {
 
   handlSubmit = async e => {
     e.preventDefault();
-    const { file, title, description, category, price, phone, _id, id } =
+
+    const { title, description, category, price, phone, _id, id } =
       this.state.formData;
+    const { files } = this.state;
+    if (title === '') {
+      return error({
+        title: 'Назва',
+        text: 'Введіть Назву товару!',
+      });
+    }
+    if (description === '') {
+      return error({
+        title: 'Опис',
+        text: 'Введіть Опис товару!',
+      });
+    }
+    if (category === '') {
+      return error({
+        title: 'Категорію',
+        text: 'Вибиріть Категорію товару!',
+      });
+    }
+    if (price === '') {
+      return error({
+        title: 'Ціна',
+        text: 'Введіть Ціну товару!',
+      });
+    }
+    if (phone === '') {
+      return error({
+        title: 'Телефон',
+        text: 'Введіть Ваш телефон! формат +380961231212',
+      });
+    }
+
+    if (files.length === 0) {
+      return error({
+        title: 'Фото',
+        text: 'Загрузіть Фото Товару!',
+      });
+    }
 
     const data = new FormData();
     data.append('title', title);
@@ -49,7 +108,15 @@ class editProductCard extends Component {
     data.append('category', category);
     data.append('price', price);
     data.append('phone', phone);
-    data.append('file', file);
+    if (files.length > 0) {
+      console.log('weq');
+      for (let i = 0; i < files.length; i += 1) {
+        console.log(files[i]);
+        data.append('file', files[i]);
+      }
+    } else {
+      data.append('file', files);
+    }
 
     await this.props.onSubmit(_id ? _id : id, data);
 
@@ -62,6 +129,21 @@ class editProductCard extends Component {
   };
 
   handleInputChange = e => {
+    if (e.target.type === 'file') {
+      let files = Array.from(e.target.files);
+
+      files.forEach(file => {
+        let reader = new FileReader();
+        reader.onloadend = () => {
+          this.setState({
+            files: [...this.state.files, file],
+            imagesPreviewUrls: [...this.state.imagesPreviewUrls, reader.result],
+          });
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
     const { value, name } = e.target;
 
     this.setState(prevState => ({
@@ -82,82 +164,87 @@ class editProductCard extends Component {
       _id: cardId,
       id,
     } = this.state.formData;
+    const { imagesPreviewUrls } = this.state;
 
     return (
       <AuthCard>
-        <Title className={styles.authTitle} level={2}>
-          Додати оголошення
-        </Title>
-        <IconButton
-          onClick={this.props.onModalClose}
-          className={styles.closeBtn}
-          aria-label="Закрыть модалку"
-        >
-          <CloseIcon />
-        </IconButton>
-        <form onSubmit={this.handlSubmit}>
-          <Input
-            label="Назва товару"
-            className={styles.addFormIput}
-            name="title"
-            placeholder=""
-            onChange={this.handleInputChange}
-            value={title}
-          />
-          <Input
-            label="Фото"
-            type="file"
-            className={styles.addFormIput}
-            name="file"
-            placeholder=""
-            onChange={this.handleInputChange}
-          />
-          <Input
-            label="Опис товару"
-            className={styles.addFormIput}
-            name="description"
-            placeholder=""
-            onChange={this.handleInputChange}
-            value={description}
-          />
-          <Select
-            label="Категорія товару"
-            className={styles.addFormIput}
-            name="category"
-            placeholder=""
-            onChange={this.handleInputChange}
-            value={category}
-          />
-          <Input
-            label="Ціна"
-            className={styles.addFormIput}
-            name="price"
-            placeholder="0.00 грн"
-            onChange={this.handleInputChange}
-            value={price}
-          />
-          <Input
-            label="Телефон"
-            type="phone"
-            className={styles.addFormIput}
-            name="phone"
-            placeholder="+380000000000"
-            onChange={this.handleInputChange}
-            value={phone}
-          />
+        <div className={styles.editFormContainer}>
+          <Title className={styles.authTitle} level={2}>
+            Редагувати оголошення
+          </Title>
           <IconButton
-            type="button"
-            onClick={() => this.deleteCard(cardId ? cardId : id)}
-            className={styles.delete}
-            aria-label="Видалити оголошення"
+            onClick={this.props.onModalClose}
+            className={styles.closeBtn}
+            aria-label="Закрыть модалку"
           >
-            <DeleteIcon /> Видалити оголошення
+            <CloseIcon />
           </IconButton>
+          <form onSubmit={this.handlSubmit}>
+            <Input
+              label="Назва товару"
+              className={styles.addFormIput}
+              name="title"
+              placeholder=""
+              onChange={this.handleInputChange}
+              value={title}
+            />
+            <FileInput
+              label="Фото"
+              type="file"
+              className={styles.addFormIput}
+              name="file"
+              placeholder=""
+              onChange={this.handleInputChange}
+              previewFiles={imagesPreviewUrls}
+              onDeleteImageClick={this.onDeleteImageClick}
+            />
+            <Input
+              label="Опис товару"
+              className={styles.addFormIput}
+              name="description"
+              placeholder=""
+              onChange={this.handleInputChange}
+              value={description}
+            />
+            <Select
+              label="Категорія товару"
+              className={styles.addFormIput}
+              name="category"
+              placeholder=""
+              onChange={this.handleInputChange}
+              value={category}
+            />
+            <Input
+              label="Ціна"
+              className={styles.addFormIput}
+              name="price"
+              placeholder="0.00 грн"
+              onChange={this.handleInputChange}
+              value={price}
+            />
+            <Input
+              label="Телефон"
+              type="phone"
+              className={styles.addFormIput}
+              name="phone"
+              placeholder="+380000000000"
+              onChange={this.handleInputChange}
+              value={phone}
+            />
+            <IconButton
+              type="button"
+              onClick={() => this.deleteCard(cardId ? cardId : id)}
+              className={styles.delete}
+              aria-label="Видалити оголошення"
+            >
+              <DeleteIcon /> Видалити оголошення
+            </IconButton>
 
-          <div className={styles.buttonsContainer}>
-            <PrymaryButton type="submit">Додати</PrymaryButton>
-          </div>
-        </form>
+            <div className={styles.buttonsContainer}>
+              <PrymaryButton type="submit">Додати</PrymaryButton>
+            </div>
+          </form>
+        </div>
       </AuthCard>
     );
   }

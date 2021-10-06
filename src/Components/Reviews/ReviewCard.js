@@ -40,7 +40,7 @@ function ReviewCard({
   }
 
   return (
-    <AuthCard>
+    <AuthCard className={styles.authCard}>
       <div className={styles.content}>
         <div className={styles.titleMobile}>
           <Title className={styles.title}>{title}</Title>
