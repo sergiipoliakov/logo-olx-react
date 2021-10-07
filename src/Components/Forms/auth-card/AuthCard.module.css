@@ -1,4 +1,6 @@
 .card {
+  max-width: 861px;
+  width: 100%;
   background: var(--inactive-color);
-  overflow: scroll;
+  /* overflow: scroll; */
 }

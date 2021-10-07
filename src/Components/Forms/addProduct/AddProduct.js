@@ -146,6 +146,7 @@ class AddProduct extends Component {
         text: `${this.props.errorMessage?.message}`,
       });
     }
+    this.props.onGetUserCards();
 
     this.props.onModalClose();
   };
@@ -261,6 +262,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  onGetUserCards: cardsOperations.fetchUserCards,
   onSubmit: cardsOperations.addCard,
 };
 
