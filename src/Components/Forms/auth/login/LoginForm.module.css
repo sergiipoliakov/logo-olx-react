@@ -1,4 +1,6 @@
 .loginFormContainer {
+  position: relative;
+  height: 75vh;
   padding-top: 60px;
   padding-bottom: 60px;
   padding-left: 100px;
@@ -47,6 +49,7 @@
 }
 @media (max-width: 768px) {
   .loginFormContainer {
+    height: 80vh;
     width: 290px;
     padding-top: 50px;
     padding-bottom: 50px;
