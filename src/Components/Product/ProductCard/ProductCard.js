@@ -39,7 +39,11 @@ const ProductCard = ({
   return (
     <li className={styles.card}>
       <div className={styles.wraper}>
-        <img className={styles.image} src={imageSrc} alt={title} />
+        <div
+          className={styles.image}
+          style={{ backgroundImage: `url(${imageSrc})` }}
+        ></div>
+        {/* <img className={styles.image} src={imageSrc} alt={title} /> */}
         <div className={styles.layaut}>
           {isFavouritesCardsPage ? (
             <IconButton

@@ -43,10 +43,10 @@ class HomePage extends Component {
     return (
       <div className={styles.container}>
         <MyCarousel items={cards.sales} title="Розпродаж та різне" to="trade" />
-        <MyCarousel items={cards.free} title="Відпочинок та спорт" to="/free" />
+        <MyCarousel items={cards.free} title=" Віддам безкоштовно" to="/free" />
         <MyCarousel
           items={cards.recreationAndSport}
-          title="Віддам безкоштовно"
+          title="Відпочинок та спорт"
           to="/recreationAndSport"
         />
         <MyCarousel

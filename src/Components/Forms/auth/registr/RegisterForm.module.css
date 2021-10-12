@@ -1,8 +1,10 @@
 .registerFormContainer {
+  height: 80vh;
   padding-top: 60px;
   padding-bottom: 60px;
   padding-left: 100px;
   padding-right: 100px;
+  overflow: scroll;
 }
 
 .authInput {
@@ -36,6 +38,7 @@
 
 @media (max-width: 768px) {
   .registerFormContainer {
+    height: 90vh;
     max-width: 290px;
     padding-top: 50px;
     padding-bottom: 50px;
