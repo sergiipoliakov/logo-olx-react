@@ -26,12 +26,12 @@ function ReviewCard({
     name = 'Олга',
     phone = '+30999090909',
     dataFrom = 'на OLX с нояб. 2018',
-    description = 'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона',
+    description = "Для того щоб ваше нове оголошення з'явилося в огляді, просто перезавантажте сторінку. Незабаром буде виправлене новим оновленням додатока",
     imageUrls = [
       'https://mcleansmartialarts.com/wp-content/uploads/2017/04/default-image-620x600.jpg',
     ],
-    title = 'Футболка спортивна',
-  },
+    title = 'перезавантажте сторінку',
+  } = {},
 }) {
   const [showInfo, setShowInfo] = useState(false);
   function myArrow({ type }) {
